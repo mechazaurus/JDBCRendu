@@ -1,8 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class BDD {
 
@@ -10,8 +6,10 @@ public class BDD {
 	private Statement statement;
 	private PreparedStatement preparedStatement;
 	
-	public BDD () throws SQLException {
-		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "");
+	public BDD () throws SQLException
+	{
+
+		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/JDBC", "root", "");
 		statement = connection.createStatement();
 	}
 
@@ -38,4 +36,10 @@ public class BDD {
 	public void setPreparedStatement(PreparedStatement preparedStatement) {
 		this.preparedStatement = preparedStatement;
 	}
+
+	public ResultSet executeQuery(String query) throws SQLException
+	{
+		return statement.executeQuery(query);
+	}
+
 }
