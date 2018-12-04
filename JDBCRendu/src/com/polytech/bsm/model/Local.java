@@ -1,12 +1,14 @@
 package com.polytech.bsm.model;
 
+import java.util.ArrayList;
+
 /**
  * This class will contain informations about a local :
  *     - Its links
  *     - Its size
  *     - Its specs
  * @author Yohann BENETREAULT
- * @author Irteza SEIKH MUHAMMAD
+ * @author Irteza SHEIKH MUHAMMAD
  * @version 0.1a
  */
 
@@ -16,6 +18,7 @@ public class Local {
 	private LocalType localType;
 	private Integer localSize;
 	private Integer localSpec;
+	private ArrayList<Local> localLinks;
 	
 	// Constructors	
 	public Local(LocalType type, Integer size, Integer spec) {

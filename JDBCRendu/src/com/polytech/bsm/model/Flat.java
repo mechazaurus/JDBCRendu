@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *     - Its description
  *     - Its state
  * @author Yohann BENETREAULT
- * @author Irteza SEIKH MUHAMMAD
+ * @author Irteza SHEIKH MUHAMMAD
  * @version 0.1a
  *
  */
