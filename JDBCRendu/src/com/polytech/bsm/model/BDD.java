@@ -1,3 +1,4 @@
+package com.polytech.bsm.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ public class BDD {
 	private PreparedStatement preparedStatement;
 	
 	public BDD () throws SQLException {
-		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "");
+		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "aqwzsx85");
 		statement = connection.createStatement();
 	}
 
