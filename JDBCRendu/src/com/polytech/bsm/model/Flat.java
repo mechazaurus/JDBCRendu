@@ -59,4 +59,23 @@ public class Flat {
 	public void setFlatLocals(ArrayList<Local> flatLocals) {
 		this.flatLocals = flatLocals;
 	}
+
+	// Manage locals
+	public void addLocal(Local local) throws Exception {
+		
+		if(!flatLocals.contains(local)) {
+			flatLocals.add(local);
+		} else {
+			throw new Exception("Local already in the list.");
+		}
+	}
+	
+	public void removeLocal(Local local) throws Exception {
+		
+		if(flatLocals.contains(local)) {
+			flatLocals.remove(local);
+		} else {
+			throw new Exception("Local doesn't exist in the list.");
+		}
+	}
 }

@@ -25,6 +25,7 @@ public class Local {
 		this.localType = type;
 		this.localSize = size;
 		this.localSpec = spec;
+		this.localLinks = new ArrayList<Local>();
 	}
 
 	// Getters and setters
@@ -45,5 +46,36 @@ public class Local {
 	}
 	public void setLocalSpec(Integer localSpec) {
 		this.localSpec = localSpec;
+	}
+	public ArrayList<Local> getLocalLinks() {
+		return localLinks;
+	}
+	public void setLocalLinks(ArrayList<Local> localLinks) {
+		this.localLinks = localLinks;
+	}
+	
+	// Manage links
+	public void addLink(Local local) throws Exception {
+		
+		if(!localLinks.contains(local) && local.getLocalLinks().contains(this)) {
+			localLinks.add(local);
+			local.getLocalLinks().add(this);
+		} else {
+			throw new Exception("Link already exists.");
+		}
+	}
+	
+	public void removeLink(Local local) throws Exception {
+		
+		if(localLinks.contains(local) && local.getLocalLinks().contains(this)) {
+			localLinks.remove(local);
+			local.getLocalLinks().remove(this);
+		} else if (!localLinks.contains(local) && local.getLocalLinks().contains(this)) {
+			local.getLocalLinks().remove(this);
+		} else if (localLinks.contains(local) && !local.getLocalLinks().contains(this)) {
+			localLinks.remove(local);
+		} else {
+			throw new Exception("Link doesn't exist.");
+		}
 	}
 }
