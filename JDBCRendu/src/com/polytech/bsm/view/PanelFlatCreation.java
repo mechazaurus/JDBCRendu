@@ -1,13 +1,19 @@
 package com.polytech.bsm.view;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.border.MatteBorder;
 
 import com.polytech.bsm.model.FlatState;
 
@@ -24,12 +30,13 @@ public class PanelFlatCreation extends JPanel {
 	private JComboBox<String> flatStateComboBox;
 	private JLabel localLabel;
 	private JButton addLocalButton;
-	private JTabbedPane localTabbedPane;
+	private JTable localTable;
 	
 	public PanelFlatCreation () {
 
 		// Initialization
 		this.setLayout(null);
+		this.setBackground(Color.WHITE);
 		
 		// Title setup
 		titleLabel = new JLabel("Flat creation");
@@ -45,8 +52,9 @@ public class PanelFlatCreation extends JPanel {
 		addressLabel.setVisible(true);
 		add(addressLabel);
 		addressTextField = new JTextField();
-		addressTextField.setBounds(50, 90, 600, 30);
+		addressTextField.setBounds(50, 90, 450, 30);
 		addressTextField.setFont(new Font("Serif", Font.PLAIN, 14));
+		addressTextField.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
 		addressTextField.setVisible(true);
 		add(addressTextField);
 		
@@ -57,21 +65,22 @@ public class PanelFlatCreation extends JPanel {
 		descriptionLabel.setVisible(true);
 		add(descriptionLabel);
 		descriptionTextField = new JTextField();
-		descriptionTextField.setBounds(50, 165, 600, 30);
+		descriptionTextField.setBounds(50, 165, 450, 60);
 		descriptionTextField.setFont(new Font("Serif", Font.PLAIN, 14));
+		descriptionTextField.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
 		descriptionTextField.setVisible(true);
 		add(descriptionTextField);
 		
 		// Flat state setup
 		flatStateLabel = new JLabel("State");
-		flatStateLabel.setBounds(50, 200, 200, 50);
+		flatStateLabel.setBounds(50, 225, 200, 50);
 		flatStateLabel.setFont(new Font("Serif", Font.ITALIC, 18));
 		flatStateLabel.setVisible(true);
 		add(flatStateLabel);
 		flatStateComboBox = new JComboBox<String>();
 		flatStateComboBox.addItem(FlatState.UNDER_CONSTRUCTION.toString());
 		flatStateComboBox.addItem(FlatState.READY.toString());
-		flatStateComboBox.setBounds(50, 240, 175, 30);
+		flatStateComboBox.setBounds(50, 265, 175, 30);
 		flatStateComboBox.setFont(new Font("Serif", Font.BOLD, 14));
 		flatStateComboBox.setVisible(true);
 		add(flatStateComboBox);
@@ -83,8 +92,14 @@ public class PanelFlatCreation extends JPanel {
 		localLabel.setVisible(true);
 		add(localLabel);
 		addLocalButton = new JButton("Add local");
-		addLocalButton.setBounds(150, 300, 120, 30);
+		addLocalButton.setBounds(830, 300, 120, 30);
 		addLocalButton.setFont(new Font("Serif", Font.BOLD, 14));
 		addLocalButton.setVisible(true);
+		add(addLocalButton);
+		localTable = new JTable();
+		localTable.setBounds(50, 335, 900, 400);
+		localTable.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
+		localTable.setVisible(true);
+		add(localTable);
 	}
 }
