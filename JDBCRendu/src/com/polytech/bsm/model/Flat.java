@@ -3,7 +3,7 @@ package com.polytech.bsm.model;
 import java.util.ArrayList;
 
 /**
- * This classe will contain informations about a flat :
+ * This class will contain informations about a flat :
  *     - Its locals
  *     - Its address
  *     - Its description
@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * @version 0.1a
  *
  */
+
 public class Flat {
 
 	// Attributes
@@ -29,7 +30,33 @@ public class Flat {
 	public Flat(String address, String desc) {
 		this.flatAddress = address;
 		this.flatDescription = desc;
-		this.flatState = null;
+		this.flatState = FlatState.UNDER_CONSTRUCTION;
 		this.flatLocals = new ArrayList<Local>();
+	}
+	
+	// Getters and setters
+	public String getFlatAddress() {
+		return flatAddress;
+	}
+	public void setFlatAddress(String flatAddress) {
+		this.flatAddress = flatAddress;
+	}
+	public String getFlatDescription() {
+		return flatDescription;
+	}
+	public void setFlatDescription(String flatDescription) {
+		this.flatDescription = flatDescription;
+	}
+	public FlatState getFlatState() {
+		return flatState;
+	}
+	public void setFlatState(FlatState flatState) {
+		this.flatState = flatState;
+	}
+	public ArrayList<Local> getFlatLocals() {
+		return flatLocals;
+	}
+	public void setFlatLocals(ArrayList<Local> flatLocals) {
+		this.flatLocals = flatLocals;
 	}
 }
