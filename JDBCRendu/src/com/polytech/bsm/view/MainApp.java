@@ -22,5 +22,6 @@ public class MainApp extends JFrame {
 		
 		add(panelFlatCreation);
 		setContentPane(panelFlatCreation);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 }
