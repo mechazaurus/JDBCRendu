@@ -6,7 +6,7 @@ public class main
     {
         try
         {
-            BDD bdd = new BDD("");
+            BDD bdd = new BDD();
 
         }
         catch (SQLException sql)

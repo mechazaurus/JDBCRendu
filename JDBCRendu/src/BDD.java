@@ -10,8 +10,8 @@ public class BDD {
 	private Statement statement;
 	private PreparedStatement preparedStatement;
 	
-	public BDD (String str) throws SQLException {
-		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+str, "root", "");
+	public BDD () throws SQLException {
+		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "");
 		statement = connection.createStatement();
 	}
 
