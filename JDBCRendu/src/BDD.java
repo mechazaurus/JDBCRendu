@@ -1,0 +1,45 @@
+import java.sql.*;
+
+public class BDD {
+
+	private Connection connection;
+	private Statement statement;
+	private PreparedStatement preparedStatement;
+	
+	public BDD () throws SQLException
+	{
+
+		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/JDBC", "root", "");
+		statement = connection.createStatement();
+	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
+	}
+
+	public Statement getStatement() {
+		return statement;
+	}
+
+	public void setStatement(Statement statement) {
+		this.statement = statement;
+	}
+
+	public PreparedStatement getPreparedStatement() {
+		return preparedStatement;
+	}
+
+	public void setPreparedStatement(PreparedStatement preparedStatement) {
+		this.preparedStatement = preparedStatement;
+	}
+
+	public ResultSet executeQuery(String query) throws SQLException
+	{
+		return statement.executeQuery(query);
+	}
+
+}
