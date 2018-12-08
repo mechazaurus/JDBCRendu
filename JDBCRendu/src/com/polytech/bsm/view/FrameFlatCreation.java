@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import com.polytech.bsm.model.Flat;
 import com.polytech.bsm.model.FlatState;
 import com.polytech.bsm.model.Local;
+import com.polytech.bsm.model.LocalType;
 
 public class FrameFlatCreation extends JFrame {
 
@@ -28,6 +29,7 @@ public class FrameFlatCreation extends JFrame {
 	private JLabel localLabel;
 	private JButton addLocalButton;
 	private JTable localTable;
+	private JButton createFlatBtn;
 	
 	public FrameFlatCreation() {
 
@@ -97,7 +99,11 @@ public class FrameFlatCreation extends JFrame {
 		localTable.setVisible(true);
 		getContentPane().add(localTable);
 
-		setLayout(null);
+		getContentPane().setLayout(null);
+		
+		createFlatBtn = new JButton("Create Flat");
+		createFlatBtn.setBounds(830, 743, 117, 29);
+		getContentPane().add(createFlatBtn);
 		setBackground(Color.WHITE);
 		setLocationRelativeTo(null);
 		setVisible(false);
@@ -107,6 +113,11 @@ public class FrameFlatCreation extends JFrame {
 	public void addLocalListener(ActionListener listenForAddLocal)
 	{
 		addLocalButton.addActionListener(listenForAddLocal);
+	}
+	
+	public void addCreateFlatListener(ActionListener listenForCreateFlat)
+	{
+		createFlatBtn.addActionListener(listenForCreateFlat);
 	}
 
 	public void updateTable(ArrayList<Local>locals)
@@ -143,4 +154,25 @@ public class FrameFlatCreation extends JFrame {
         localTable.repaint();
     }
 
+    public String getAddress()
+	{
+		return addressTextField.getText();
+	}
+
+	public String getDescription()
+	{
+		return descriptionTextField.getText();
+	}
+	public FlatState getFlatState()
+	{
+		int tmp = flatStateComboBox.getSelectedIndex();
+		switch(tmp)
+		{
+			case 0:
+				return FlatState.UNDER_CONSTRUCTION;
+			case 1:
+				return FlatState.READY;
+		}
+		return null;
+	}
 }

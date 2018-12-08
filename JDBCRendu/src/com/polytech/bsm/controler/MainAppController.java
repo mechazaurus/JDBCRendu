@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.polytech.bsm.model.FlatState;
 import com.polytech.bsm.model.LocalType;
 import com.polytech.bsm.model.MainAppModel;
 import com.polytech.bsm.view.FrameAddLocal;
@@ -52,8 +53,8 @@ public class MainAppController
 		//Setting Listeners for addFlatView
 		this.frameFlatCreation.addLocalListener(new MainAppController.addLocalListener());
 
-		//Settings Listener for addLocal
-        //this.addLocal.setListenerAddLocal(new MainAppController.addLocalButtonListener());
+		this.frameFlatCreation.addCreateFlatListener(new MainAppController.addCreateFlatButton());
+
 	}
 
 
@@ -65,6 +66,7 @@ public class MainAppController
             try
             {
             	frameFlatCreation.setVisible(true);
+            	mainAppModel.resetLocals();
 
                 new Thread(new Runnable(){
                     public void run()
@@ -192,6 +194,29 @@ public class MainAppController
                     System.out.println(mainAppModel.getLocals().get(i).toString());
                 }
 
+            }
+            catch(NumberFormatException ex)
+            {
+                System.out.println(ex);
+            }
+        }
+    }
+
+    class addCreateFlatButton implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            try
+            {
+                //TODO get info from frame
+                String adress = frameFlatCreation.getAddress();
+                String desc = frameFlatCreation.getDescription();
+                FlatState state = frameFlatCreation.getFlatState();
+
+                System.out.println(adress+desc+state);
+                //TODO send info to model
+                mainAppModel.createFlat(adress,desc,state);
+                System.out.println("Flat Added");
             }
             catch(NumberFormatException ex)
             {

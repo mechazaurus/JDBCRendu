@@ -18,7 +18,7 @@ public class MainAppModel
 
 
 	private Flat createdFlat;
-	private ArrayList<Local> locals;
+	private ArrayList<Local> AddFlatlocals;
 
 
 
@@ -30,7 +30,7 @@ public class MainAppModel
 		//this.bdd = new BDD();
 		flatList = flats;
 		createdFlat = null;
-		locals = new ArrayList<Local>();
+		AddFlatlocals = new ArrayList<Local>();
 	}
 	public void setView(MainAppView view)
 	{
@@ -61,14 +61,39 @@ public class MainAppModel
 		local.setLocalSize(size);
 		//TODO SET ID
 		local.setLocalLinks(new ArrayList<Local>());
-		locals.add(local);
+		AddFlatlocals.add(local);
         System.out.println("local Added");
 	}
 
 	public ArrayList<Local> getLocals()
     {
-        return locals;
+        return AddFlatlocals;
     }
+
+    public void resetLocals()
+	{
+		AddFlatlocals = new ArrayList<>();
+	}
+
+    public void createFlat(String add, String desc, FlatState state)
+	{
+		int id = 0;
+		for(int i=0; i<flatList.size(); i++)
+		{
+			if(flatList.get(i).getFlatID()>id)
+			{
+				id = flatList.get(i).getFlatID();
+			}
+		}
+		Flat flat = new Flat();
+		flat.setFlatID(id);
+		flat.setFlatState(state);
+		flat.setFlatAddress(add);
+		flat.setFlatDescription(desc);
+		flat.setFlatLocals(AddFlatlocals);
+
+		flatList.add(flat);
+	}
 
 
 }

@@ -27,7 +27,7 @@ public class FrameAddLocal extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JTextArea txtrLocalType = new JTextArea();
-		txtrLocalType.setText("Tyoe");
+		txtrLocalType.setText("Type");
 		txtrLocalType.setBounds(59, 62, 81, 22);
 		getContentPane().add(txtrLocalType);
 		
