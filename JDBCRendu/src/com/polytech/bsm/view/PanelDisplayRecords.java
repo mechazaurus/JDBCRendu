@@ -1,5 +1,4 @@
 package com.polytech.bsm.view;
-import com.polytech.bsm.controler.FlatDAO;
 import com.polytech.bsm.model.Flat;
 
 import javax.swing.*;
@@ -31,57 +30,47 @@ public class PanelDisplayRecords extends JFrame {
         }
 
         data = new Vector<Vector<Object>>();
-        try
+
+        for(int i =0; i<flats.size(); i++)
         {
-            ResultSetMetaData md = rs.getMetaData();
-            int columns = md.getColumnCount();
-
-
-            //  Get rows data
-            while (rs.next())
-            {
-                    Vector<Object> vector = new Vector<Object>();
-                    for (int columnIndex = 1; columnIndex <= columns; columnIndex++)
-                    {
-                        vector.add(rs.getObject(columnIndex));
-                    }
-                    data.add(vector);
-
-            }
-
-            //System.out.println(columnNames);
-            //System.out.println(data);
-
-            //Setting up the model for the JTable
-            model = new DefaultTableModel(data, columnNames);
-
-            //Adding columns names
-            table = new JTable();
-            table.setModel(model);
-            table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-            table.setFillsViewportHeight(true);
-
-            JScrollPane scroll = new JScrollPane(table);
-            scroll.setHorizontalScrollBarPolicy(
-                    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-            scroll.setVerticalScrollBarPolicy(
-                    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-
-            table.setEnabled(false);
-
-            this.add(scroll);
-
-            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            setTitle("Appartments List");
-            setLocationRelativeTo(null);
-            setVisible(false);
-            setSize(600, 500);
-        }
-        catch (SQLException sql)
-        {
-            System.out.println("error construtor PanelDisplayRecords "+sql);
+            Vector<Object> vector = new Vector<Object>();
+            vector.add(flats.get(i).getFlatID());
+            vector.add(flats.get(i).getFlatDescription());
+            vector.add(flats.get(i).getFlatAddress());
+            vector.add(flats.get(i).getFlatState());
+            data.add(vector);
         }
 
+
+
+
+        //System.out.println(columnNames);
+        //System.out.println(data);
+
+        //Setting up the model for the JTable
+        model = new DefaultTableModel(data, columnNames);
+
+        //Adding columns names
+        table = new JTable();
+        table.setModel(model);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        table.setFillsViewportHeight(true);
+
+        JScrollPane scroll = new JScrollPane(table);
+        scroll.setHorizontalScrollBarPolicy(
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scroll.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+        table.setEnabled(false);
+
+        this.add(scroll);
+
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setTitle("Appartments List");
+        setLocationRelativeTo(null);
+        setVisible(false);
+        setSize(600, 500);
     }
 
 
