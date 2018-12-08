@@ -7,6 +7,7 @@ import javax.swing.JTextArea;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 public class PanelSpecifiedSearch extends JPanel
 {
@@ -59,7 +60,6 @@ public class PanelSpecifiedSearch extends JPanel
 		btnSearch.setBounds(224, 247, 117, 29);
 		add(btnSearch);
 		setPreferredSize(new Dimension(739, 634));
-		
 		
 		setVisible(true);
 		

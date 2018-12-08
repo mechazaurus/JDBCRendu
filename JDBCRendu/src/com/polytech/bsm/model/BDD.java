@@ -13,7 +13,7 @@ public class BDD {
 	private PreparedStatement preparedStatement;
 	
 	public BDD () throws SQLException {
-		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/JDBC", "root", "aqwzsx85");
+		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/JDBC", "root", "");
 		statement = connection.createStatement();
 	}
 

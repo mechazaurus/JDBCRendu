@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
-public class MainApp extends JFrame {
+public class MainAppView extends JFrame {
 
 	// Attributes
 	private static final long serialVersionUID = 1L;
@@ -15,7 +15,7 @@ public class MainApp extends JFrame {
 	private JButton searchAppartmentButton;
 	
 
-	public MainApp() {
+	public MainAppView() {
 		
 		// Main window setup
 		setResizable(false);
@@ -34,8 +34,15 @@ public class MainApp extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
-
-		setVisible(true);
+	}
+	
+	public void addAppartmentnListener(ActionListener listenAddButton)
+	{
+		addAppartmentButton.addActionListener(listenAddButton);
+	}
+	public void addSearchListener(ActionListener listenSearchButton)
+	{
+		searchAppartmentButton.addActionListener(listenSearchButton);
 	}
 
 	
