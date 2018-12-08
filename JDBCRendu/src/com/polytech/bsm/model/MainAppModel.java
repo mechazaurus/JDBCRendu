@@ -8,8 +8,11 @@ import com.polytech.bsm.view.MainAppView;
 
 public class MainAppModel 
 {
+	@SuppressWarnings("unused")
 	private BDD bdd;
+	@SuppressWarnings("unused")
 	private MainAppView mainAppView;
+	@SuppressWarnings("unused")
 	private MainAppController mainAppController;
 	
 	public MainAppModel() throws SQLException
