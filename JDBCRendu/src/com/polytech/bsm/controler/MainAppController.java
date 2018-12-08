@@ -1,13 +1,8 @@
-package com.polytech.bsm.controller;
+package com.polytech.bsm.controler;
 
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
 
 import com.polytech.bsm.model.MainAppModel;
 import com.polytech.bsm.view.MainAppView;
@@ -17,6 +12,7 @@ import com.polytech.bsm.view.FrameSpecifiedSearch;
 public class MainAppController 
 {
 	private MainAppView mainAppView;
+	@SuppressWarnings("unused")
 	private MainAppModel mainAppModel;
 	//private JFrame addAppartmentView;
 	private FrameSpecifiedSearch searchAppartmentView;

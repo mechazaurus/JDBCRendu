@@ -15,13 +15,15 @@ import java.util.ArrayList;
 public class Local {
 
 	// Attributes
+	private Integer localID;
 	private LocalType localType;
 	private Integer localSize;
 	private Integer localSpec;
 	private ArrayList<Local> localLinks;
 	
 	// Constructors	
-	public Local(LocalType type, Integer size, Integer spec) {
+	public Local(Integer id, LocalType type, Integer size, Integer spec) {
+		this.localID = id;
 		this.localType = type;
 		this.localSize = size;
 		this.localSpec = spec;
@@ -29,6 +31,12 @@ public class Local {
 	}
 
 	// Getters and setters
+	public Integer getLocalID() {
+		return localID;
+	}
+	public void setLocalID(Integer localID) {
+		this.localID = localID;
+	}
 	public LocalType getLocalType() {
 		return localType;
 	}

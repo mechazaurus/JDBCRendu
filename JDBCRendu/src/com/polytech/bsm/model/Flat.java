@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class Flat {
 
 	// Attributes
+	private Integer flatID;
 	private String flatAddress;
 	private String flatDescription;
 	private FlatState flatState;
@@ -24,10 +25,11 @@ public class Flat {
 	
 	// Constructors
 	public Flat() {
-		this(null, null);
+		this(null, null, null);
 	}
 	
-	public Flat(String address, String desc) {
+	public Flat(Integer id, String address, String desc) {
+		this.flatID = id;
 		this.flatAddress = address;
 		this.flatDescription = desc;
 		this.flatState = FlatState.UNDER_CONSTRUCTION;
@@ -35,6 +37,12 @@ public class Flat {
 	}
 	
 	// Getters and setters
+	public Integer getFlatID() {
+		return flatID;
+	}
+	public void setFlatID(Integer flatID) {
+		this.flatID = flatID;
+	}
 	public String getFlatAddress() {
 		return flatAddress;
 	}

@@ -3,7 +3,7 @@ package com.polytech.bsm.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.polytech.bsm.controller.MainAppController;
+import com.polytech.bsm.controler.MainAppController;
 import com.polytech.bsm.view.MainAppView;
 
 public class MainAppModel 

@@ -9,7 +9,7 @@ public abstract class DAO<T> {
 	public Connection connection = ConnectionSQL.getInstance();
 	
 	// Get an object from it's ID
-	public abstract T find(long id);
+	public abstract T find(Integer id);
 	
 	// Create an entry in the database from an object
 	public abstract T create(T obj);
@@ -18,5 +18,5 @@ public abstract class DAO<T> {
 	public abstract T update(T obj);
 	
 	// Delete an entry in the database from an object
-	public abstract T delete(T obj);
+	public abstract void delete(T obj);
 }
