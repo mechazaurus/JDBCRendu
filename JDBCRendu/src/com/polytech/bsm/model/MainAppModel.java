@@ -9,8 +9,8 @@ import com.polytech.bsm.view.MainAppView;
 
 public class MainAppModel 
 {
-	@SuppressWarnings("unused")
-	private BDD bdd;
+
+	//private BDD bdd;
 	@SuppressWarnings("unused")
 	private MainAppView mainAppView;
 	@SuppressWarnings("unused")
@@ -27,7 +27,7 @@ public class MainAppModel
 	
 	public MainAppModel(ArrayList<Flat> flats) throws SQLException
 	{
-		this.bdd = new BDD();
+		//this.bdd = new BDD();
 		flatList = flats;
 		createdFlat = null;
 		locals = new ArrayList<Local>();

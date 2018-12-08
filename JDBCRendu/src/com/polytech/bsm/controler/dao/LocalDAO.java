@@ -139,4 +139,29 @@ public class LocalDAO extends DAO<Local> {
 		return null;
 	}
 
+	@Override
+	public Integer findLastID() {
+
+		Integer lastID = null;
+		
+		try {
+			
+			ResultSet resultSet = this.connection
+					.createStatement(
+							ResultSet.TYPE_SCROLL_INSENSITIVE,
+							ResultSet.CONCUR_UPDATABLE)
+					.executeQuery("SELECT max(idlocal) FROM Local");
+			
+			while (resultSet.next()) {
+				
+				lastID = resultSet.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return lastID;
+	}
+
 }

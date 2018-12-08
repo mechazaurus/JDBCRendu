@@ -20,7 +20,6 @@ import javax.swing.*;
 public class MainAppController 
 {
 	private MainAppView mainAppView;
-	@SuppressWarnings("unused")
 	private MainAppModel mainAppModel;
 	//private JFrame addAppartmentView;
 	private FrameSpecifiedSearch searchAppartmentView;
