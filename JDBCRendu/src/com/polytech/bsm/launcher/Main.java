@@ -28,8 +28,8 @@ public class Main {
 			}
 		}
 		
-        try {
-            
+        try
+        {
         	MainAppModel mainModel = new MainAppModel();
 			MainAppView mainView = new MainAppView();
             MainAppController mainController = new MainAppController(mainView, mainModel);

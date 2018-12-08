@@ -1,13 +1,17 @@
 package com.polytech.bsm.view;
+import com.polytech.bsm.controler.FlatDAO;
+import com.polytech.bsm.model.Flat;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 
-public class PanelDisplayRecords extends JPanel {
+public class PanelDisplayRecords extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private Vector<String> columnNames;
@@ -15,22 +19,23 @@ public class PanelDisplayRecords extends JPanel {
     private JTable table;
     private DefaultTableModel model;
 
-    public PanelDisplayRecords(ResultSet rs)
+    public PanelDisplayRecords(ArrayList<Flat> flats)
     {
-        initializeUI();
         columnNames = new Vector<String>();
+        String [] col = new String[]{"IdFlat", "Address", "Description", "State"};
+
+        //Set columns name
+        for (int i = 0; i<col.length; i++)
+        {
+            columnNames.add(col[i]);
+        }
+
         data = new Vector<Vector<Object>>();
         try
         {
             ResultSetMetaData md = rs.getMetaData();
             int columns = md.getColumnCount();
 
-            //  Get column names
-            int columnCount = rs.getMetaData().getColumnCount();
-            for (int column = 1; column <= columnCount; column++)
-            {
-                columnNames.add(rs.getMetaData().getColumnName(column));
-            }
 
             //  Get rows data
             while (rs.next())
@@ -65,6 +70,12 @@ public class PanelDisplayRecords extends JPanel {
             table.setEnabled(false);
 
             this.add(scroll);
+
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            setTitle("Appartments List");
+            setLocationRelativeTo(null);
+            setVisible(false);
+            setSize(600, 500);
         }
         catch (SQLException sql)
         {
@@ -73,20 +84,5 @@ public class PanelDisplayRecords extends JPanel {
 
     }
 
-    private void initializeUI() {
-        setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(700, 400));
-    }
 
-    private static void showFrame() {
-
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                PanelDisplayRecords.showFrame();
-            }
-        });
-    }
 }

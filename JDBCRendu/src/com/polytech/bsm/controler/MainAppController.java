@@ -76,12 +76,13 @@ public class MainAppController
                 int nbBathrooms = searchAppartmentView.getBathroom() ;
                 int nbBedRooms = searchAppartmentView.getBedRooms();
                 int nbKitchens = searchAppartmentView.getKitchens();
-                //Send query from model
+
+                //TODO Send query from model
                 ResultSet rs = mainAppModel.searchSpecificAppartment(nbBedRooms, nbKitchens, nbBathrooms);
 
 
                 //Create new JFrame to display response
-                
+                //TODO
                
             }
             catch(NumberFormatException ex)
