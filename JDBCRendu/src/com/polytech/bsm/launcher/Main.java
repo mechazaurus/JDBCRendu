@@ -14,8 +14,6 @@ public class Main {
     	
         FlatDAO flatDAO = new FlatDAO();
         
-        System.out.println(flatDAO.findLastID());
-		
         try
         {
         	MainAppModel mainModel = new MainAppModel(flatDAO.findAll());
