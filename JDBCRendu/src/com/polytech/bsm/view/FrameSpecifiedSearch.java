@@ -5,63 +5,78 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import java.awt.event.ActionEvent;
 
-public class PanelSpecifiedSearch extends JPanel
+public class FrameSpecifiedSearch extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtSpecifiedSearch;
 	private JTextField bathroomField;
 	private JTextField kitchenField;
-	private JTextField textField_2;
-	public PanelSpecifiedSearch() 
+	private JTextField bedroomField;
+	private JButton btnSearch;
+	
+	public FrameSpecifiedSearch() 
 	{
-		setLayout(null);
+		getContentPane().setLayout(null);
 		
 		txtSpecifiedSearch = new JTextField();
 		txtSpecifiedSearch.setText("Appartement Specified Search");
 		txtSpecifiedSearch.setBounds(192, 17, 198, 26);
-		add(txtSpecifiedSearch);
+		getContentPane().add(txtSpecifiedSearch);
 		txtSpecifiedSearch.setColumns(10);
 		
 		JTextArea txtrHowManyBathrooms = new JTextArea();
 		txtrHowManyBathrooms.setText("How many bathrooms ?");
 		txtrHowManyBathrooms.setBounds(49, 90, 156, 16);
-		add(txtrHowManyBathrooms);
+		getContentPane().add(txtrHowManyBathrooms);
 		
 		bathroomField = new JTextField();
 		bathroomField.setBounds(373, 85, 130, 26);
-		add(bathroomField);
+		getContentPane().add(bathroomField);
 		bathroomField.setColumns(10);
 		
 		JTextArea txtrHowManyKitchens = new JTextArea();
 		txtrHowManyKitchens.setText("How many kitchens ?");
 		txtrHowManyKitchens.setBounds(49, 139, 156, 16);
-		add(txtrHowManyKitchens);
+		getContentPane().add(txtrHowManyKitchens);
 		
 		kitchenField = new JTextField();
 		kitchenField.setColumns(10);
 		kitchenField.setBounds(373, 134, 130, 26);
-		add(kitchenField);
+		getContentPane().add(kitchenField);
 		
 		JTextArea txtrHowManyBedrooms = new JTextArea();
 		txtrHowManyBedrooms.setText("How many bedrooms ?");
 		txtrHowManyBedrooms.setBounds(49, 185, 156, 16);
-		add(txtrHowManyBedrooms);
+		getContentPane().add(txtrHowManyBedrooms);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(373, 180, 130, 26);
-		add(textField_2);
+		bedroomField = new JTextField();
+		bedroomField.setColumns(10);
+		bedroomField.setBounds(373, 180, 130, 26);
+		getContentPane().add(bedroomField);
 		
-		JButton btnSearch = new JButton("Search");
+		btnSearch = new JButton("Search");
 		btnSearch.setBounds(224, 247, 117, 29);
-		add(btnSearch);
+		getContentPane().add(btnSearch);
 		setPreferredSize(new Dimension(739, 634));
 		
-		setVisible(true);
+         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+         setTitle("Search Appartments");
+         setLocationRelativeTo(null);
+         setVisible(false);
+         setSize(600, 500);
 		
 	}
+	
+	public void addSearchListener(ActionListener listenSearchButton)
+	{
+		btnSearch.addActionListener(listenSearchButton);
+	}
+	
+	
 }
