@@ -1,4 +1,5 @@
 import Views.PanelDisplayRecords;
+import Views.PanelSpecifiedSearch;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -16,7 +17,7 @@ public class Main {
             String query = "SELECT * FROM Flat";
             ResultSet rs = bdd.executeQuery(query);
 
-            JPanel panel = new PanelDisplayRecords(rs);
+            JPanel panel = new PanelSpecifiedSearch();
             panel.setOpaque(true);
             
             JFrame frame = new JFrame();

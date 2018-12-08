@@ -27,7 +27,7 @@ public class MainApp extends JFrame {
 		
 		// Main window setup
 		setResizable(false);
-		setSize(800, 800);
+		setSize(600, 500);
 		setLocationRelativeTo(null);
 		setVisible(true);
 		
@@ -39,19 +39,18 @@ public class MainApp extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		addAppartmentButton.setBounds(82, 33, 203, 65);
+		addAppartmentButton.setBounds(28, 33, 203, 65);
 		getContentPane().add(addAppartmentButton);
 
 		searchAppartmentButton = new JButton("Search Appartment");
-		searchAppartmentButton.setBounds(492, 33, 203, 65);
+		searchAppartmentButton.setBounds(373, 33, 203, 65);
 		getContentPane().add(searchAppartmentButton);
 		
 		mainAppPanel = new JPanel();
-		mainAppPanel.setBounds(28, 117, 739, 634);
-		getContentPane().add(mainAppPanel);
-		mainAppPanel = panelSpecifiedSearch;
-		mainAppPanel.setVisible(true);
-		
+		mainAppPanel.setBounds(28, 117, 541, 351);
+		this.getContentPane().add(mainAppPanel);
+		mainAppPanel.setLayout(null);
+		setSpecifiedSearchPanelON();
 	}
 	
 	public void setInvisibleAllPanels()
