@@ -1,4 +1,4 @@
-package Views;
+package com.polytech.bsm.view;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -10,6 +10,7 @@ import javax.swing.JButton;
 
 public class PanelSpecifiedSearch extends JPanel
 {
+	private static final long serialVersionUID = 1L;
 	private JTextField txtSpecifiedSearch;
 	private JTextField bathroomField;
 	private JTextField kitchenField;
