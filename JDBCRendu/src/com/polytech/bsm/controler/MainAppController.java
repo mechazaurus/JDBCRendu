@@ -1,14 +1,15 @@
 package com.polytech.bsm.controler;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 import com.polytech.bsm.model.MainAppModel;
 import com.polytech.bsm.view.FrameDisplayFlats;
 import com.polytech.bsm.view.MainAppView;
 import com.polytech.bsm.view.FrameSpecifiedSearch;
+import com.polytech.bsm.view.FrameFlatCreation;
 
 
 public class MainAppController 
@@ -19,6 +20,7 @@ public class MainAppController
 	//private JFrame addAppartmentView;
 	private FrameSpecifiedSearch searchAppartmentView;
 	private FrameDisplayFlats displayAllFlatsFrame;
+	private FrameFlatCreation frameFlatCreation;
 	
 	public MainAppController(MainAppView view, MainAppModel model)
 	{
@@ -26,6 +28,7 @@ public class MainAppController
 		this.mainAppView.setVisible(true);
 		this.mainAppModel = model;
 
+		this.frameFlatCreation = new FrameFlatCreation();
 		this.searchAppartmentView = new FrameSpecifiedSearch();
 		
 		//Setting Listeners for mainApp frame
@@ -35,6 +38,7 @@ public class MainAppController
 		
 		//Setting Listeners for searchAppartmentView
 		this.searchAppartmentView.addSearchListener(new MainAppController.searchAppartmentListener());
+
 		
 	}
 
@@ -46,7 +50,7 @@ public class MainAppController
         {
             try
             {
-            	//addAppartmentView = new addAppartmentFrame;
+            	frameFlatCreation.setVisible(true);
             }
             catch(NumberFormatException ex)
             {
@@ -54,6 +58,7 @@ public class MainAppController
             }
         }
     }
+
     class searchAppartmentButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
@@ -85,7 +90,7 @@ public class MainAppController
             }
         }
     }
-    
+
 
     class searchAppartmentListener implements ActionListener
     {
