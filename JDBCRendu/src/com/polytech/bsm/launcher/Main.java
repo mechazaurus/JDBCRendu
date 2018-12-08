@@ -15,7 +15,7 @@ public class Main {
             
         	MainAppModel mainModel = new MainAppModel();
 			MainAppView mainView = new MainAppView();
-            MainAppController mainController = new MainAppController(mainView);
+            MainAppController mainController = new MainAppController(mainView, mainModel);
             mainModel.setController(mainController);
             mainModel.setView(mainView);
         } catch (SQLException sql) {
