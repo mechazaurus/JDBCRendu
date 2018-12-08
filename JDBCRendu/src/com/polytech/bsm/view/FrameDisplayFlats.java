@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class PanelDisplayRecords extends JFrame {
+public class FrameDisplayFlats extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private Vector<String> columnNames;
@@ -18,7 +18,7 @@ public class PanelDisplayRecords extends JFrame {
     private JTable table;
     private DefaultTableModel model;
 
-    public PanelDisplayRecords(ArrayList<Flat> flats)
+    public FrameDisplayFlats(ArrayList<Flat> flats)
     {
         columnNames = new Vector<String>();
         String [] col = new String[]{"IdFlat", "Address", "Description", "State"};
@@ -40,9 +40,6 @@ public class PanelDisplayRecords extends JFrame {
             vector.add(flats.get(i).getFlatState());
             data.add(vector);
         }
-
-
-
 
         //System.out.println(columnNames);
         //System.out.println(data);
