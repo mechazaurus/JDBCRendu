@@ -23,4 +23,6 @@ public abstract class DAO<T> {
 	
 	// Get all entries from the database
 	public abstract ArrayList<T> findAll();
+	
+	public abstract Integer findLastID();
 }

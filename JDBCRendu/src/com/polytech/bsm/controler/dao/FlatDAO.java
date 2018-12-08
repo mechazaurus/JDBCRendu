@@ -132,4 +132,28 @@ public class FlatDAO extends DAO<Flat> {
 		return flats;
 	}
 
+	@Override
+	public Integer findLastID() {
+		
+		Integer lastID = null;
+		
+		try {
+			
+			ResultSet resultSet = this.connection
+					.createStatement(
+							ResultSet.TYPE_SCROLL_INSENSITIVE,
+							ResultSet.CONCUR_UPDATABLE)
+					.executeQuery("SELECT max(idflat) FROM Flat");
+			
+			while(resultSet.next()) {
+				lastID = resultSet.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return lastID;
+	}
+
 }
