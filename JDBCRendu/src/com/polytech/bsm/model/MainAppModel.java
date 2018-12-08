@@ -1,5 +1,6 @@
 package com.polytech.bsm.model;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.polytech.bsm.controller.MainAppController;
@@ -22,6 +23,13 @@ public class MainAppModel
 	public void setController(MainAppController controller)
 	{
 		this.mainAppController = controller;
+	}
+
+
+	public ResultSet searchSpecificAppartment(int bedrooms, int kichen, int bathrooms)
+	{
+
+		return null;
 	}
 
 }

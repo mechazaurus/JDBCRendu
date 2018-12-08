@@ -77,6 +77,17 @@ public class FrameSpecifiedSearch extends JFrame
 	{
 		btnSearch.addActionListener(listenSearchButton);
 	}
-	
+	public int getBedRooms ()
+	{
+		return Integer.parseInt(bedroomField.getText());
+	}
+	public int getKitchens ()
+	{
+		return Integer.parseInt(kitchenField.getText());
+	}
+	public int getBathroom ()
+	{
+		return Integer.parseInt(bathroomField.getText());
+	}
 	
 }
