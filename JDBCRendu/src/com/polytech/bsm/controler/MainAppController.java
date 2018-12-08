@@ -1,11 +1,11 @@
 package com.polytech.bsm.controler;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 
 import com.polytech.bsm.model.MainAppModel;
+import com.polytech.bsm.view.FrameAddLocal;
 import com.polytech.bsm.view.FrameDisplayFlats;
 import com.polytech.bsm.view.MainAppView;
 import com.polytech.bsm.view.FrameSpecifiedSearch;
@@ -21,6 +21,10 @@ public class MainAppController
 	private FrameSpecifiedSearch searchAppartmentView;
 	private FrameDisplayFlats displayAllFlatsFrame;
 	private FrameFlatCreation frameFlatCreation;
+
+
+	private FrameAddLocal addLocal;
+	
 	
 	public MainAppController(MainAppView view, MainAppModel model)
 	{
@@ -38,8 +42,14 @@ public class MainAppController
 		
 		//Setting Listeners for searchAppartmentView
 		this.searchAppartmentView.addSearchListener(new MainAppController.searchAppartmentListener());
-
 		
+			
+
+		//Setting Listeners for addFlatView
+		this.frameFlatCreation.addLocalListener(new MainAppController.addLocalListener());
+
+		//Settings Listener for addLocal
+        this.addLocal.setListenerAddLocal(new MainAppController.addLocalButtonListener());
 	}
 
 
@@ -66,6 +76,23 @@ public class MainAppController
             try
             {
             	searchAppartmentView.setVisible(true);
+            }
+            catch(NumberFormatException ex)
+            {
+                System.out.println(ex);
+            }
+        }
+    }
+    
+    class addLocalListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            try
+            {
+            	addLocal = new FrameAddLocal();
+            	addLocal.setVisible(true);
+
             }
             catch(NumberFormatException ex)
             {
@@ -110,6 +137,27 @@ public class MainAppController
                 //Create new JFrame to display response
                 //TODO
                
+            }
+            catch(NumberFormatException ex)
+            {
+                System.out.println(ex);
+            }
+        }
+    }
+
+    class addLocalButtonListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            try
+            {
+                //TODO get info from add local frame
+
+
+
+                //TODO send info to model
+
+
             }
             catch(NumberFormatException ex)
             {

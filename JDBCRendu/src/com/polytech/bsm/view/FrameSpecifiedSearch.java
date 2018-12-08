@@ -69,9 +69,9 @@ public class FrameSpecifiedSearch extends JFrame
 		
          setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
          setTitle("Search Appartments");
-         setLocationRelativeTo(null);
-         setVisible(false);
-         setSize(600, 500);
+		setLocationRelativeTo(null);
+		setVisible(false);
+		setSize(600, 500);
 		
 	}
 	

@@ -2,6 +2,8 @@ package com.polytech.bsm.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 
@@ -94,5 +96,10 @@ public class FrameFlatCreation extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(false);
 		setSize(1100, 800);
+	}
+	
+	public void addLocalListener(ActionListener listenForAddLocal)
+	{
+		addLocalButton.addActionListener(listenForAddLocal);
 	}
 }

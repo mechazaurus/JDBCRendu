@@ -16,12 +16,21 @@ public class MainAppModel
 	@SuppressWarnings("unused")
 	private MainAppController mainAppController;
 
+
+	private Flat createdFlat;
+	private ArrayList<Local> locals;
+
+
+
+
 	private ArrayList<Flat> flatList;
 	
 	public MainAppModel(ArrayList<Flat> flats) throws SQLException
 	{
 		this.bdd = new BDD();
 		flatList = flats;
+		createdFlat = null;
+		locals = new ArrayList<Local>();
 	}
 	public void setView(MainAppView view)
 	{
@@ -43,5 +52,17 @@ public class MainAppModel
 	{
 		return flatList;
 	}
+
+	public void addLocal(LocalType type, int size, int spec)
+	{
+		Local local = new Local();
+		local.setLocalType(type);
+		local.setLocalSpec(spec);
+		local.setLocalSize(size);
+		//TODO SET ID
+		local.setLocalLinks(new ArrayList<Local>());
+		locals.add(local);
+	}
+
 
 }

@@ -20,7 +20,16 @@ public class Local {
 	private Integer localSize;
 	private Integer localSpec;
 	private ArrayList<Local> localLinks;
-	
+
+	public Local()
+	{
+		this.localID = null;
+		this.localType = null;
+		this.localSize = null;
+		this.localSpec = null;
+		this.localLinks = new ArrayList<Local>();
+	}
+
 	// Constructors	
 	public Local(Integer id, LocalType type, Integer size, Integer spec) {
 		this.localID = id;
