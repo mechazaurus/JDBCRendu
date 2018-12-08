@@ -63,6 +63,8 @@ public class PanelDisplayRecords extends JPanel {
             scroll.setVerticalScrollBarPolicy(
                     JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
+            table.setEnabled(false);
+
             this.add(scroll);
         }
         catch (SQLException sql)
