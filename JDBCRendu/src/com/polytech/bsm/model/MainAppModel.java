@@ -62,7 +62,13 @@ public class MainAppModel
 		//TODO SET ID
 		local.setLocalLinks(new ArrayList<Local>());
 		locals.add(local);
+        System.out.println("local Added");
 	}
+
+	public ArrayList<Local> getLocals()
+    {
+        return locals;
+    }
 
 
 }

@@ -3,13 +3,18 @@ package com.polytech.bsm.controler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import com.polytech.bsm.model.LocalType;
 import com.polytech.bsm.model.MainAppModel;
 import com.polytech.bsm.view.FrameAddLocal;
 import com.polytech.bsm.view.FrameDisplayFlats;
 import com.polytech.bsm.view.MainAppView;
 import com.polytech.bsm.view.FrameSpecifiedSearch;
 import com.polytech.bsm.view.FrameFlatCreation;
+
+import javax.swing.*;
 
 
 public class MainAppController 
@@ -49,7 +54,7 @@ public class MainAppController
 		this.frameFlatCreation.addLocalListener(new MainAppController.addLocalListener());
 
 		//Settings Listener for addLocal
-        this.addLocal.setListenerAddLocal(new MainAppController.addLocalButtonListener());
+        //this.addLocal.setListenerAddLocal(new MainAppController.addLocalButtonListener());
 	}
 
 
@@ -61,6 +66,29 @@ public class MainAppController
             try
             {
             	frameFlatCreation.setVisible(true);
+
+                new Thread(new Runnable(){
+                    public void run()
+                    {
+                        while(true)
+                        {
+                            try {
+                                Thread.sleep(1000);
+
+                                SwingUtilities.invokeLater(new Runnable() {
+                                    public void run() {
+                                        frameFlatCreation.updateTable(mainAppModel.getLocals());
+                                    }
+                                });
+                            }
+                            catch (InterruptedException d)
+                            {
+                                System.out.println(d);
+                            }
+                        }
+                    }
+                }).start();
+
             }
             catch(NumberFormatException ex)
             {
@@ -92,6 +120,7 @@ public class MainAppController
             {
             	addLocal = new FrameAddLocal();
             	addLocal.setVisible(true);
+                addLocal.setListenerAddLocal(new MainAppController.addLocalButtonListener());
 
             }
             catch(NumberFormatException ex)
@@ -152,11 +181,17 @@ public class MainAppController
             try
             {
                 //TODO get info from add local frame
-
-
+                int size = addLocal.getSizeField();
+                int spec = addLocal.getSpecField();
+                LocalType type = addLocal.getLocalType();
 
                 //TODO send info to model
+                mainAppModel.addLocal(type,size, spec);
+                for (int i=0; i<mainAppModel.getLocals().size(); i++)
+                {
 
+                    System.out.println(mainAppModel.getLocals().get(i).toString());
+                }
 
             }
             catch(NumberFormatException ex)

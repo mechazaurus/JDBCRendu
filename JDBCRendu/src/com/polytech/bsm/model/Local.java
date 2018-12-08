@@ -95,4 +95,11 @@ public class Local {
 			throw new Exception("Link doesn't exist.");
 		}
 	}
+
+	public String toString()
+	{
+		String tmp = "";
+		tmp = localType.toString()+ " "+ localSize+" "+localSpec;
+		return tmp;
+	}
 }

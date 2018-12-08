@@ -3,11 +3,16 @@ package com.polytech.bsm.view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
 
+import com.polytech.bsm.model.Flat;
 import com.polytech.bsm.model.FlatState;
+import com.polytech.bsm.model.Local;
 
 public class FrameFlatCreation extends JFrame {
 
@@ -85,6 +90,7 @@ public class FrameFlatCreation extends JFrame {
 		addLocalButton.setFont(new Font("Serif", Font.BOLD, 14));
 		addLocalButton.setVisible(true);
 		getContentPane().add(addLocalButton);
+
 		localTable = new JTable();
 		localTable.setBounds(50, 335, 900, 400);
 		localTable.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
@@ -102,4 +108,39 @@ public class FrameFlatCreation extends JFrame {
 	{
 		addLocalButton.addActionListener(listenForAddLocal);
 	}
+
+	public void updateTable(ArrayList<Local>locals)
+    {
+        Vector<String> columnNames = new Vector<String>();
+        String [] col = new String[]{"LocalType", "Size", "Description"};
+
+        //Set columns name
+        for (int i = 0; i<col.length; i++)
+        {
+            columnNames.add(col[i]);
+        }
+
+
+        Vector<Vector<Object>> data;
+        data = new Vector<Vector<Object>>();
+
+        for(int i =0; i<locals.size(); i++)
+        {
+            Vector<Object> vector = new Vector<Object>();
+            vector.add(locals.get(i).getLocalType());
+            vector.add(locals.get(i).getLocalSize());
+            vector.add(locals.get(i).getLocalSpec());
+            data.add(vector);
+        }
+
+        //System.out.println(columnNames);
+        //System.out.println(data);
+
+        //Setting up the model for the JTable
+
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        localTable.setModel(model);
+        localTable.repaint();
+    }
+
 }
