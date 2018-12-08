@@ -8,7 +8,7 @@ public class ConnectionSQL {
 
 	private static String url = "jdbc:mysql://localhost:3306/JDBC";
 	private static String user = "root";
-	private static String password = "aqwzsx85";
+	private static String password = "";
 	private static Connection connection;
 	
 	public static Connection getInstance() {
