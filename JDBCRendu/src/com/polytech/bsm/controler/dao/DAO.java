@@ -1,6 +1,7 @@
 package com.polytech.bsm.controler.dao;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.polytech.bsm.model.ConnectionSQL;
 
@@ -19,4 +20,7 @@ public abstract class DAO<T> {
 	
 	// Delete an entry in the database from an object
 	public abstract void delete(T obj);
+	
+	// Get all entries from the database
+	public abstract ArrayList<T> findAll();
 }

@@ -3,6 +3,7 @@ package com.polytech.bsm.controler.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.polytech.bsm.model.Flat;
 import com.polytech.bsm.model.FlatState;
@@ -38,30 +39,24 @@ public class FlatDAO extends DAO<Flat> {
 
 	@Override
 	public Flat create(Flat obj) {
+
+		PreparedStatement preparedStatement;
 		
 		try {
-			ResultSet resultSet = this.connection
-					.createStatement(
-							ResultSet.TYPE_SCROLL_INSENSITIVE,
-							ResultSet.CONCUR_UPDATABLE)
-					.executeQuery("SELECT NEXTVAL('flat_idflat_seq') as id");
+			preparedStatement = this.connection
+					.prepareStatement("INSERT INTO Flat (idflat, address, description, state)"
+							+ "VALUES(?, ?, ?, ?);");
+			preparedStatement.setInt(1, obj.getFlatID());
+			preparedStatement.setString(2, obj.getFlatAddress());
+			preparedStatement.setString(3, obj.getFlatDescription());
+			preparedStatement.setString(4, obj.getFlatState().toString());
 			
-			if (resultSet.first()) {
-				int id = resultSet.getInt("id");
-				
-				PreparedStatement preparedStatement = this.connection
-						.prepareStatement("INSERT INTO flat (idflat, address, description, state)"
-								+ "VALUES(?, ?, ?, ?);");
-				
-				preparedStatement.setInt(1, id);
-				preparedStatement.setString(2, obj.getFlatAddress());
-				preparedStatement.setString(3, obj.getFlatDescription());
-				preparedStatement.setString(4, obj.getFlatState().toString());
-			}
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+				
+				
 		return obj;
 	}
 
@@ -104,6 +99,37 @@ public class FlatDAO extends DAO<Flat> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public ArrayList<Flat> findAll() {
+		
+		ArrayList<Flat> flats = new ArrayList<>();
+
+		try {
+			ResultSet resultSet = this.connection
+					.createStatement(
+							ResultSet.TYPE_SCROLL_INSENSITIVE,
+							ResultSet.CONCUR_UPDATABLE)
+					.executeQuery("SELECT * FROM Flat");
+			
+			while (resultSet.next()) {
+				Flat flat = new Flat(resultSet.getInt(1),
+						resultSet.getString(2),
+						resultSet.getString(3));
+				
+				if (resultSet.getString(4).equalsIgnoreCase("ready")) {
+					flat.setFlatState(FlatState.READY);
+				}
+				
+				flats.add(flat);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return flats;
 	}
 
 }

@@ -3,6 +3,7 @@ package com.polytech.bsm.controler.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.polytech.bsm.model.Local;
 import com.polytech.bsm.model.LocalType;
@@ -43,25 +44,19 @@ public class LocalDAO extends DAO<Local> {
 	@Override
 	public Local create(Local obj) {
 
+		PreparedStatement preparedStatement;
+		
 		try {
-			ResultSet resultSet = this.connection
-					.createStatement(
-							ResultSet.TYPE_SCROLL_INSENSITIVE,
-							ResultSet.CONCUR_UPDATABLE)
-					.executeQuery("SELECT NEXTVAL('local_idlocal_seq') as id");
+			preparedStatement = this.connection
+					.prepareStatement("INSERT INTO Local (idlocal, type, size, spec)"
+							+ "VALUES(?, ?, ?, ?);");
 			
-			if (resultSet.first()) {
-				int id = resultSet.getInt("id");
-				
-				PreparedStatement preparedStatement = this.connection
-						.prepareStatement("INSERT INTO local (idlocal, type, size, spec)"
-								+ "VALUES(?, ?, ?, ?);");
-				
-				preparedStatement.setInt(1, id);
-				preparedStatement.setString(2, obj.getLocalType().toString());
-				preparedStatement.setInt(3, obj.getLocalSize());
-				preparedStatement.setInt(4, obj.getLocalSpec());
-			}
+			preparedStatement.setInt(1, obj.getLocalID());
+			preparedStatement.setString(2, obj.getLocalType().toString());
+			preparedStatement.setInt(3, obj.getLocalSize());
+			preparedStatement.setInt(4, obj.getLocalSpec());
+			
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -82,7 +77,7 @@ public class LocalDAO extends DAO<Local> {
 						+ "SET type=" + obj.getLocalType().toString() + " "
 						+ "SET size=" + obj.getLocalSize() + " "
 						+ "SET spec=" + obj.getLocalSpec() + " "
-						+ "WHERE idflat=" + obj.getLocalID());
+						+ "WHERE idLocal=" + obj.getLocalID());
 			
 			obj = this.find(obj.getLocalID());
 					
@@ -103,11 +98,45 @@ public class LocalDAO extends DAO<Local> {
 			.createStatement(
 					ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_UPDATABLE)
-			.executeUpdate("DELETE FROM flat WHERE idflat=" + obj.getLocalID());
+			.executeUpdate("DELETE FROM Local WHERE idLocal=" + obj.getLocalID());
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public ArrayList<Local> findAll() {
+
+		ArrayList<Local> locals = new ArrayList<>();
+		
+		try {
+			
+			ResultSet resultSet = this.connection
+					.createStatement(
+							ResultSet.TYPE_SCROLL_INSENSITIVE,
+							ResultSet.CONCUR_UPDATABLE)
+					.executeQuery("SELECT * FROM Local");
+			
+			while (resultSet.next()) {
+				Local local = new Local(resultSet.getInt(1), null, resultSet.getInt(4), resultSet.getInt(5));
+				
+				if (resultSet.getString(3).equalsIgnoreCase("bathroom")) {
+					local.setLocalType(LocalType.BATHROOM);
+				} else if (resultSet.getString(3).equalsIgnoreCase("bedroom")) {
+					local.setLocalType(LocalType.BEDROOM);
+				} else if (resultSet.getString(3).equalsIgnoreCase("kitchen")) {
+					local.setLocalType(LocalType.KITCHEN);
+				}
+				
+				locals.add(local);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 }
