@@ -1,20 +1,19 @@
-package Views;
+package com.polytech.bsm.view;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Vector;
 
 public class PanelDisplayRecords extends JPanel {
 
-    Vector<String> columnNames;
-    Vector<Vector<Object>> data;
-    JTable table;
-    DefaultTableModel model;
+	private static final long serialVersionUID = 1L;
+	private Vector<String> columnNames;
+    private Vector<Vector<Object>> data;
+    private JTable table;
+    private DefaultTableModel model;
 
     public PanelDisplayRecords(ResultSet rs)
     {

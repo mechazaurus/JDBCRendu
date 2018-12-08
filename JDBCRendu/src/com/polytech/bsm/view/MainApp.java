@@ -2,7 +2,6 @@ package com.polytech.bsm.view;
 
 import javax.swing.JFrame;
 
-import Views.PanelSpecifiedSearch;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
