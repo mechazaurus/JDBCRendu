@@ -2,6 +2,7 @@ package com.polytech.bsm.controler;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 import com.polytech.bsm.model.MainAppModel;
 import com.polytech.bsm.view.MainAppView;
@@ -72,7 +73,13 @@ public class MainAppController
             try
             {
             	//Get query info from view
+                int nbBathrooms = searchAppartmentView.getBathroom() ;
+                int nbBedRooms = searchAppartmentView.getBedRooms();
+                int nbKitchens = searchAppartmentView.getKitchens();
                 //Send query from model
+                ResultSet rs = mainAppModel.searchSpecificAppartment(nbBedRooms, nbKitchens, nbBathrooms);
+
+
                 //Create new JFrame to display response
                 
                
