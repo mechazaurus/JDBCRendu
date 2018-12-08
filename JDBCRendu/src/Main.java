@@ -29,7 +29,6 @@ public class Main {
             frame.setVisible(true);*/
             
             MainApp main = new MainApp();
-            main.setSpecifiedSearchPanelON();
         } catch (SQLException sql) {
             System.out.println(sql);
         }

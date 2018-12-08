@@ -46,11 +46,11 @@ public class MainApp extends JFrame {
 		searchAppartmentButton.setBounds(373, 33, 203, 65);
 		getContentPane().add(searchAppartmentButton);
 		
-		mainAppPanel = new JPanel();
+		mainAppPanel = panelSpecifiedSearch;
 		mainAppPanel.setBounds(28, 117, 541, 351);
 		this.getContentPane().add(mainAppPanel);
-		mainAppPanel.setLayout(null);
-		setSpecifiedSearchPanelON();
+		mainAppPanel = null;
+		repaint();
 	}
 	
 	public void setInvisibleAllPanels()
