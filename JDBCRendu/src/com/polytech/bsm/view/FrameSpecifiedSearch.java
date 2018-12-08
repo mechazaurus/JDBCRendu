@@ -1,6 +1,5 @@
 package com.polytech.bsm.view;
 
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
@@ -9,7 +8,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import java.awt.event.ActionEvent;
 
 public class FrameSpecifiedSearch extends JFrame
 {
