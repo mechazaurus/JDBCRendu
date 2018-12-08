@@ -2,6 +2,7 @@ package com.polytech.bsm.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -12,7 +13,7 @@ public class BDD {
 	private PreparedStatement preparedStatement;
 	
 	public BDD () throws SQLException {
-		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "aqwzsx85");
+		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/JDBC", "root", "");
 		statement = connection.createStatement();
 	}
 
@@ -38,5 +39,9 @@ public class BDD {
 
 	public void setPreparedStatement(PreparedStatement preparedStatement) {
 		this.preparedStatement = preparedStatement;
+	}
+
+	public ResultSet executeQuery(String query) throws SQLException {
+		return statement.executeQuery((query));
 	}
 }

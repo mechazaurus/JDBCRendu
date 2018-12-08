@@ -77,7 +77,6 @@ public class PanelDisplayRecords extends JPanel {
     private void initializeUI() {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(700, 400));
-
     }
 
     private static void showFrame() {
