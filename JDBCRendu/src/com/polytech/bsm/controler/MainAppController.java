@@ -3,7 +3,6 @@ package com.polytech.bsm.controler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 import com.polytech.bsm.model.MainAppModel;
 import com.polytech.bsm.view.FrameDisplayFlats;
@@ -14,7 +13,6 @@ import com.polytech.bsm.view.FrameSpecifiedSearch;
 public class MainAppController 
 {
 	private MainAppView mainAppView;
-	@SuppressWarnings("unused")
 	private MainAppModel mainAppModel;
 	//private JFrame addAppartmentView;
 	private FrameSpecifiedSearch searchAppartmentView;
