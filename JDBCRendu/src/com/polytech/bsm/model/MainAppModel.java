@@ -31,7 +31,7 @@ public class MainAppModel
 
 	public ResultSet searchSpecificAppartment(int bedrooms, int kichen, int bathrooms)
 	{
-
+		//TODO send query and return results
 		return null;
 	}
 
