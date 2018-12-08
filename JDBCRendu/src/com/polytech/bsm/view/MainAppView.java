@@ -11,6 +11,7 @@ public class MainAppView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JButton addAppartmentButton;
 	private JButton searchAppartmentButton;
+	private JButton displayFlatsAppartment;
 	
 
 	public MainAppView() {
@@ -31,6 +32,10 @@ public class MainAppView extends JFrame {
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+		
+		displayFlatsAppartment = new JButton("Display All Flats");
+		displayFlatsAppartment.setBounds(186, 181, 203, 65);
+		getContentPane().add(displayFlatsAppartment);
 
 	}
 	
@@ -42,6 +47,8 @@ public class MainAppView extends JFrame {
 	{
 		searchAppartmentButton.addActionListener(listenSearchButton);
 	}
-
-	
+	public void addDisplayFlatListener(ActionListener listenSearchButton)
+	{
+		displayFlatsAppartment.addActionListener(listenSearchButton);
+	}
 }

@@ -24,12 +24,14 @@ public class FrameSpecifiedSearch extends JFrame
 		
 		txtSpecifiedSearch = new JTextField();
 		txtSpecifiedSearch.setText("Appartement Specified Search");
+		txtSpecifiedSearch.setEditable(false);
 		txtSpecifiedSearch.setBounds(192, 17, 198, 26);
 		getContentPane().add(txtSpecifiedSearch);
 		txtSpecifiedSearch.setColumns(10);
 		
 		JTextArea txtrHowManyBathrooms = new JTextArea();
 		txtrHowManyBathrooms.setText("How many bathrooms ?");
+		txtrHowManyBathrooms.setEditable(false);
 		txtrHowManyBathrooms.setBounds(49, 90, 156, 16);
 		getContentPane().add(txtrHowManyBathrooms);
 		
@@ -40,6 +42,7 @@ public class FrameSpecifiedSearch extends JFrame
 		
 		JTextArea txtrHowManyKitchens = new JTextArea();
 		txtrHowManyKitchens.setText("How many kitchens ?");
+		txtrHowManyKitchens.setEditable(false);
 		txtrHowManyKitchens.setBounds(49, 139, 156, 16);
 		getContentPane().add(txtrHowManyKitchens);
 		
@@ -50,6 +53,7 @@ public class FrameSpecifiedSearch extends JFrame
 		
 		JTextArea txtrHowManyBedrooms = new JTextArea();
 		txtrHowManyBedrooms.setText("How many bedrooms ?");
+		txtrHowManyBedrooms.setEditable(false);
 		txtrHowManyBedrooms.setBounds(49, 185, 156, 16);
 		getContentPane().add(txtrHowManyBedrooms);
 		

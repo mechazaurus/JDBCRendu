@@ -2,6 +2,7 @@ package com.polytech.bsm.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.polytech.bsm.controler.MainAppController;
 import com.polytech.bsm.view.MainAppView;
@@ -14,10 +15,13 @@ public class MainAppModel
 	private MainAppView mainAppView;
 	@SuppressWarnings("unused")
 	private MainAppController mainAppController;
+
+	private ArrayList<Flat> flatList;
 	
-	public MainAppModel() throws SQLException
+	public MainAppModel(ArrayList<Flat> flats) throws SQLException
 	{
 		this.bdd = new BDD();
+		flatList = flats;
 	}
 	public void setView(MainAppView view)
 	{
@@ -33,6 +37,11 @@ public class MainAppModel
 	{
 		//TODO send query and return results
 		return null;
+	}
+
+	public ArrayList<Flat> getFlatList()
+	{
+		return flatList;
 	}
 
 }

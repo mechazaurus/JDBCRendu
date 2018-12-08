@@ -3,8 +3,10 @@ package com.polytech.bsm.controler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.polytech.bsm.model.MainAppModel;
+import com.polytech.bsm.view.FrameDisplayFlats;
 import com.polytech.bsm.view.MainAppView;
 import com.polytech.bsm.view.FrameSpecifiedSearch;
 
@@ -16,6 +18,7 @@ public class MainAppController
 	private MainAppModel mainAppModel;
 	//private JFrame addAppartmentView;
 	private FrameSpecifiedSearch searchAppartmentView;
+	private FrameDisplayFlats displayAllFlatsFrame;
 	
 	public MainAppController(MainAppView view, MainAppModel model)
 	{
@@ -28,6 +31,7 @@ public class MainAppController
 		//Setting Listeners for mainApp frame
 		this.mainAppView.addAppartmentnListener(new MainAppController.addAppartmentButtonListener());
 		this.mainAppView.addSearchListener(new MainAppController.searchAppartmentButtonListener());
+		this.mainAppView.addDisplayFlatListener(new MainAppController.displayFlatsButtonListener());
 		
 		//Setting Listeners for searchAppartmentView
 		this.searchAppartmentView.addSearchListener(new MainAppController.searchAppartmentListener());
@@ -57,6 +61,23 @@ public class MainAppController
             try
             {
             	searchAppartmentView.setVisible(true);
+            }
+            catch(NumberFormatException ex)
+            {
+                System.out.println(ex);
+            }
+        }
+    }
+
+    class displayFlatsButtonListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            try
+            {
+                displayAllFlatsFrame = new FrameDisplayFlats(mainAppModel.getFlatList());
+                displayAllFlatsFrame.setVisible(true);
+
             }
             catch(NumberFormatException ex)
             {
