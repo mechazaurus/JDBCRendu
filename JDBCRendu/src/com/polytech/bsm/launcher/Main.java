@@ -1,10 +1,10 @@
 package com.polytech.bsm.launcher;
 
 import com.polytech.bsm.controler.FlatDAO;
+import com.polytech.bsm.controler.MainAppController;
 import com.polytech.bsm.model.Flat;
 import java.sql.SQLException;
 
-import com.polytech.bsm.controller.MainAppController;
 import com.polytech.bsm.model.MainAppModel;
 import com.polytech.bsm.view.MainAppView;
 
