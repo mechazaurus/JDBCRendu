@@ -1,5 +1,5 @@
 package com.polytech.bsm.view;
-import com.polytech.bsm.controler.FlatDAO;
+import com.polytech.bsm.controler.dao.FlatDAO;
 import com.polytech.bsm.model.Flat;
 
 import javax.swing.*;
