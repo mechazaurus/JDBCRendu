@@ -16,7 +16,7 @@ public class Main {
         
         try
         {
-        	MainAppModel mainModel = new MainAppModel(flatDAO.findAll());
+        	MainAppModel mainModel = new MainAppModel(flatDAO);
 			MainAppView mainView = new MainAppView();
             MainAppController mainController = new MainAppController(mainView, mainModel);
             mainModel.setController(mainController);

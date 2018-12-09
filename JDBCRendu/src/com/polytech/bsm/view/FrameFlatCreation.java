@@ -30,6 +30,7 @@ public class FrameFlatCreation extends JFrame {
 	private JButton addLocalButton;
 	private JTable localTable;
 	private JButton createFlatBtn;
+	private JButton btnEditLinks;
 	
 	public FrameFlatCreation() {
 
@@ -104,6 +105,10 @@ public class FrameFlatCreation extends JFrame {
 		createFlatBtn = new JButton("Create Flat");
 		createFlatBtn.setBounds(830, 743, 117, 29);
 		getContentPane().add(createFlatBtn);
+		
+		btnEditLinks = new JButton("Edit Links");
+		btnEditLinks.setBounds(833, 265, 117, 29);
+		getContentPane().add(btnEditLinks);
 		setBackground(Color.WHITE);
 		setLocationRelativeTo(null);
 		setVisible(false);
@@ -118,6 +123,11 @@ public class FrameFlatCreation extends JFrame {
 	public void addCreateFlatListener(ActionListener listenForCreateFlat)
 	{
 		createFlatBtn.addActionListener(listenForCreateFlat);
+	}
+	
+	public void addEditLinkListener(ActionListener listenForEditLinkButton)
+	{
+		btnEditLinks.addActionListener(listenForEditLinkButton);
 	}
 
 	public void updateTable(ArrayList<Local>locals)

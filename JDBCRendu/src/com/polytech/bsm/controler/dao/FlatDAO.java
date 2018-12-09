@@ -69,7 +69,7 @@ public class FlatDAO extends DAO<Flat> {
 				.createStatement(
 						ResultSet.TYPE_SCROLL_INSENSITIVE,
 						ResultSet.CONCUR_UPDATABLE)
-				.executeUpdate("UPDATE TABLE flat "
+				.executeUpdate("UPDATE TABLE Flat "
 						+ "SET address=" + obj.getFlatAddress() + " "
 						+ "SET description=" + obj.getFlatDescription() + " "
 						+ "SET state=" + obj.getFlatState().toString() + " "
@@ -155,5 +155,34 @@ public class FlatDAO extends DAO<Flat> {
 		
 		return lastID;
 	}
+
+	@Override
+	public void addRecord(Flat obj)
+	{
+		try {
+
+			String query = "INSERT INTO Flat (idFlat, address, description, state) VALUES (?,?,?,?)";
+
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, obj.getFlatID());
+			preparedStatement.setString(2, obj.getFlatAddress());
+			preparedStatement.setString(3, obj.getFlatDescription());
+			preparedStatement.setString(4, obj.getFlatState().toString());
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void updateObject()
+	{
+
+	}
+
+
+
 
 }

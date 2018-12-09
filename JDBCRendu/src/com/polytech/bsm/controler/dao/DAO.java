@@ -20,9 +20,15 @@ public abstract class DAO<T> {
 	
 	// Delete an entry in the database from an object
 	public abstract void delete(T obj);
-	
+
+	//Add record to database
+	public abstract void addRecord(T obs);
+
 	// Get all entries from the database
 	public abstract ArrayList<T> findAll();
 	
 	public abstract Integer findLastID();
+
+	public abstract void updateObject();
+
 }

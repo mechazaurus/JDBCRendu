@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.polytech.bsm.model.Flat;
 import com.polytech.bsm.model.Local;
 import com.polytech.bsm.model.LocalType;
 
@@ -163,5 +164,16 @@ public class LocalDAO extends DAO<Local> {
 		
 		return lastID;
 	}
+
+	@Override
+	public void addRecord(Local obj)
+	{
+
+	}
+
+	@Override
+	public void updateObject() {
+	}
+
 
 }

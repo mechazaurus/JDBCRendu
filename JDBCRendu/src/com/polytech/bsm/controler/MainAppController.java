@@ -2,18 +2,17 @@ package com.polytech.bsm.controler;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import com.polytech.bsm.model.FlatState;
 import com.polytech.bsm.model.LocalType;
 import com.polytech.bsm.model.MainAppModel;
-import com.polytech.bsm.view.FrameAddLocal;
-import com.polytech.bsm.view.FrameDisplayFlats;
-import com.polytech.bsm.view.MainAppView;
-import com.polytech.bsm.view.FrameSpecifiedSearch;
-import com.polytech.bsm.view.FrameFlatCreation;
+import com.polytech.bsm.view.*;
 
 import javax.swing.*;
 
@@ -29,6 +28,7 @@ public class MainAppController
 
 
 	private FrameAddLocal addLocal;
+	private FrameEditLinks editLinks;
 	
 	
 	public MainAppController(MainAppView view, MainAppModel model)
@@ -54,7 +54,7 @@ public class MainAppController
 		this.frameFlatCreation.addLocalListener(new MainAppController.addLocalListener());
 
 		this.frameFlatCreation.addCreateFlatListener(new MainAppController.addCreateFlatButton());
-
+        this.frameFlatCreation.addEditLinkListener(new MainAppController.addEditLinkFrame());
 	}
 
 
@@ -149,6 +149,34 @@ public class MainAppController
     }
 
 
+    class addEditLinkFrame implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            try
+            {
+                editLinks = new FrameEditLinks();
+                editLinks.setLocalComboBox(mainAppModel.getLocals());
+                editLinks.setLocalList(mainAppModel.getLocals(), editLinks.getCurrentLocalId());
+                editLinks.setVisible(true);
+
+                //Listeners
+                editLinks.addJComboBoxListener(new MainAppController.comboBoxListener());
+                //Listeners button add and remove
+                editLinks.addLinkButtonListener(new MainAppController.addLink());
+                editLinks.removeLinkButtonListener(new MainAppController.removeLink());
+                //Listener button done
+                editLinks.addButtonDoneListener(new MainAppController.doneLinks());
+
+            }
+            catch(NumberFormatException ex)
+            {
+                System.out.println(ex);
+            }
+        }
+    }
+
+
     class searchAppartmentListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
@@ -188,11 +216,6 @@ public class MainAppController
 
                 //TODO send info to model
                 mainAppModel.addLocal(type,size, spec);
-                for (int i=0; i<mainAppModel.getLocals().size(); i++)
-                {
-
-                    System.out.println(mainAppModel.getLocals().get(i).toString());
-                }
 
             }
             catch(NumberFormatException ex)
@@ -224,9 +247,84 @@ public class MainAppController
             }
         }
     }
-    
-    
-    
+
+
+
+    class comboBoxListener implements ItemListener
+    {
+        public void itemStateChanged(ItemEvent e)
+        {
+            try
+            {
+                editLinks.eraseLocalList();
+                editLinks.setLocalList(mainAppModel.getLocals(), editLinks.getCurrentLocalId());
+            }
+            catch(NumberFormatException ex)
+            {
+                System.out.println(ex);
+            }
+        }
+    }
+
+    class addLink implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            try
+            {
+                //Get local from list
+                int localId = editLinks.getSelectedLocal();
+                //Add Local to right list
+                editLinks.addLink(localId);
+
+
+            }
+            catch(NumberFormatException ex)
+            {
+                System.out.println(ex);
+            }
+        }
+    }
+    class removeLink implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            try
+            {
+                //Get local from right list
+                int localID = editLinks.getSelectedLinkLocalID();
+                //Remove local from right list
+                editLinks.removeLink(localID);
+
+            }
+            catch(NumberFormatException ex)
+            {
+                System.out.println(ex);
+            }
+        }
+    }
+
+    class doneLinks implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            try
+            {
+                //Get id of local
+                int localID = editLinks.getCurrentLocalId();
+                //Get id of locals to be linked
+                ArrayList<Integer> localsToBeLink = editLinks.getLocalToBeLink();
+                //Update Local
+                mainAppModel.editLocalLinks(localsToBeLink, localID);
+
+            }
+            catch(NumberFormatException ex)
+            {
+                System.out.println(ex);
+            }
+        }
+    }
+
     
 	
 }

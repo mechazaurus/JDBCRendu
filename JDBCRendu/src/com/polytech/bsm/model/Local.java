@@ -99,7 +99,12 @@ public class Local {
 	public String toString()
 	{
 		String tmp = "";
-		tmp = localType.toString()+ " "+ localSize+" "+localSpec;
+		tmp = localID+" "+localType.toString()+ " "+ localSize+" "+localSpec;
 		return tmp;
+	}
+
+	public void addLinkToLocal(Local tobeAdded)
+	{
+		localLinks.add(tobeAdded);
 	}
 }
