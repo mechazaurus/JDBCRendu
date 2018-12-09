@@ -29,6 +29,5 @@ public abstract class DAO<T> {
 	
 	public abstract Integer findLastID();
 
-	public abstract void updateObject();
 
 }

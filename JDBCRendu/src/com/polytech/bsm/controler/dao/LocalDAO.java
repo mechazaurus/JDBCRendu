@@ -169,11 +169,59 @@ public class LocalDAO extends DAO<Local> {
 	public void addRecord(Local obj)
 	{
 
+            try {
+
+                String query = "INSERT INTO Local (idLocal, linkedTo, type, size, spec) VALUES (?,?,?,?,?)";
+
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setInt(1, obj.getLocalID());
+                preparedStatement.setInt(2, obj.getLocalID());
+                preparedStatement.setString(3, obj.getLocalType().toString());
+                preparedStatement.setInt(4, obj.getLocalSize());
+                preparedStatement.setInt(5, obj.getLocalSpec());
+                preparedStatement.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 	}
 
-	@Override
-	public void updateObject() {
+
+	public void updateLocalLinks(ArrayList<Local> links, Local local)
+    {
+        try {
+            for(int i=0;i<links.size(); i++)
+            {
+                String query = "INSERT INTO Local (idLocal, linkedTo, type, size, spec) VALUES (?,?,?,?,?)";
+
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setInt(1, local.getLocalID());
+                preparedStatement.setInt(2, links.get(i).getLocalID());
+                preparedStatement.setString(3, local.getLocalType().toString());
+                preparedStatement.setInt(4, local.getLocalSize());
+                preparedStatement.setInt(5, local.getLocalSpec());
+                preparedStatement.executeUpdate();
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 	}
 
+
+	public void deleteRedondentLocals()
+    {
+        try {
+                String query = "DELETE FROM Local WHERE idLocal=linkedTo";
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.addBatch("SET FOREIGN_KEY_CHECKS=0");
+                preparedStatement.executeBatch();
+                preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

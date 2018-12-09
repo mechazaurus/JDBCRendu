@@ -176,7 +176,7 @@ public class FlatDAO extends DAO<Flat> {
 
 	}
 
-	@Override
+
 	public void updateObject()
 	{
 

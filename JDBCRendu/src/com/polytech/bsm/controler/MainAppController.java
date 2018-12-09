@@ -189,7 +189,7 @@ public class MainAppController
                 int nbKitchens = searchAppartmentView.getKitchens();
 
                 //TODO Send query from model
-                ResultSet rs = mainAppModel.searchSpecificAppartment(nbBedRooms, nbKitchens, nbBathrooms);
+                //ResultSet rs = mainAppModel.searchSpecificAppartment(nbBedRooms, nbKitchens, nbBathrooms);
 
 
                 //Create new JFrame to display response

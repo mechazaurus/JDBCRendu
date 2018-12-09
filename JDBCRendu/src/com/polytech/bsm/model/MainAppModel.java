@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import com.polytech.bsm.controler.MainAppController;
 import com.polytech.bsm.controler.dao.FlatDAO;
+import com.polytech.bsm.controler.dao.LocalDAO;
 import com.polytech.bsm.view.MainAppView;
 
 public class MainAppModel 
@@ -17,6 +18,7 @@ public class MainAppModel
 	@SuppressWarnings("unused")
 	private MainAppController mainAppController;
 	private FlatDAO flatDAO;
+	private LocalDAO localDAO;
 
 
 	private Flat createdFlat;
@@ -27,13 +29,14 @@ public class MainAppModel
 
 	private ArrayList<Flat> flatList;
 	
-	public MainAppModel(FlatDAO flatdao) throws SQLException
+	public MainAppModel(FlatDAO flatdao, LocalDAO localdao) throws SQLException
 	{
 		//this.bdd = new BDD();
 		flatList = flatdao.findAll();
 		createdFlat = null;
 		flatDAO = flatdao;
 		AddFlatlocals = new ArrayList<Local>();
+		localDAO = localdao;
 	}
 	public void setView(MainAppView view)
 	{
@@ -45,9 +48,12 @@ public class MainAppModel
 	}
 
 
-	public ResultSet searchSpecificAppartment(int bedrooms, int kichen, int bathrooms)
+	public ArrayList<Flat> searchSpecificAppartment(int bedrooms, int kichen, int bathrooms)
 	{
-		//TODO send query and return results
+		//TODO
+
+
+
 		return null;
 	}
 
@@ -99,13 +105,28 @@ public class MainAppModel
 		flat.setFlatDescription(desc);
 		flat.setFlatLocals(AddFlatlocals);
 
-		//TODO Ajouter le nouvel objet dans FlatDAO
+		//Ajouter le nouvel objet dans FlatDAO
 		flatDAO.addRecord(flat);
+
+		//envoyer les locaux
+        for(int i=0; i<flat.getFlatLocals().size(); i++)
+        {
+            localDAO.addRecord(flat.getFlatLocals().get(i));
+        }
+
+        //update locals
+		for(int i=0; i<AddFlatlocals.size(); i++)
+		{
+			localDAO.updateLocalLinks(AddFlatlocals.get(i).getLocalLinks(), AddFlatlocals.get(i));
+		}
+
+		//Cleaning up everything
+		localDAO.deleteRedondentLocals();
+
+		//TODO link locals to flat
+
 		flatDAO = new FlatDAO();
-
-		//TODO envoyer les locaux et les liens
-
-
+        localDAO = new LocalDAO();
 	}
 
 	public void editLocalLinks(ArrayList<Integer> links, int localID)
