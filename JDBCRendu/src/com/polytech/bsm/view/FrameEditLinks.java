@@ -2,7 +2,9 @@ package com.polytech.bsm.view;
 
 import com.polytech.bsm.model.Local;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
@@ -31,7 +33,8 @@ public class FrameEditLinks extends JFrame
 		
 
 
-		linkLocalBtn = new JButton("New button");
+		linkLocalBtn = new JButton("");
+		linkLocalBtn.setIcon(new ImageIcon(FrameEditLinks.class.getResource("/com/polytech/bsm/view/right-arrow.png")));
 		linkLocalBtn.setBounds(410, 191, 44, 29);
 		getContentPane().add(linkLocalBtn);
 
@@ -45,11 +48,13 @@ public class FrameEditLinks extends JFrame
 		getContentPane().add(txtSelectedLocal);
 		txtSelectedLocal.setColumns(10);
 
-		unlinkLocalBtn = new JButton("New button");
+		unlinkLocalBtn = new JButton("");
+		unlinkLocalBtn.setIcon(new ImageIcon("/Users/irteza/InteliJWorkspace/JDBCRendu/JDBCRendu/src/com/polytech/bsm/view/left-arrow.png"));
 		unlinkLocalBtn.setBounds(410, 232, 44, 29);
 		getContentPane().add(unlinkLocalBtn);
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 		getContentPane().setLayout(null);
 
 		btnDone = new JButton("Done");

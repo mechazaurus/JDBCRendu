@@ -1,10 +1,18 @@
 package com.polytech.bsm.view;
 
+import com.polytech.bsm.model.Flat;
+import com.polytech.bsm.model.LocalType;
+import com.polytech.bsm.model.MainAppModel;
+
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,9 +24,9 @@ public class FrameSpecifiedSearch extends JFrame
 	private JTextField bathroomField;
 	private JTextField kitchenField;
 	private JTextField bedroomField;
-	private JButton btnSearch;
+	private JButton searchBtn;
 	
-	public FrameSpecifiedSearch() 
+	public FrameSpecifiedSearch(MainAppModel model)
 	{
 		getContentPane().setLayout(null);
 		
@@ -62,9 +70,9 @@ public class FrameSpecifiedSearch extends JFrame
 		bedroomField.setBounds(373, 180, 130, 26);
 		getContentPane().add(bedroomField);
 		
-		btnSearch = new JButton("Search");
-		btnSearch.setBounds(224, 247, 117, 29);
-		getContentPane().add(btnSearch);
+		searchBtn = new JButton("Search");
+		searchBtn.setBounds(211, 255, 117, 29);
+		getContentPane().add(searchBtn);
 		setPreferredSize(new Dimension(739, 634));
 		
          setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -72,13 +80,63 @@ public class FrameSpecifiedSearch extends JFrame
 		setLocationRelativeTo(null);
 		setVisible(false);
 		setSize(600, 500);
-		
+
+		bedroomField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				bathroomField.setVisible(false);
+				kitchenField.setVisible(false);
+			}
+		});
+		bathroomField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				bedroomField.setVisible(false);
+				kitchenField.setVisible(false);
+			}
+		});
+		kitchenField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				bathroomField.setVisible(false);
+				bedroomField.setVisible(false);
+			}
+		});
+
+		searchButton(model);
+
+
 	}
 	
-	public void addSearchListener(ActionListener listenSearchButton)
+	public void searchButton (MainAppModel model)
 	{
-		btnSearch.addActionListener(listenSearchButton);
+		searchBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int nb = 0;
+				String type = null;
+				FrameDisplayFlats searchFlats;
+				if(getBathroomField().isVisible())
+				{
+					nb = Integer.valueOf(getBathroomField().getText());
+					type = LocalType.BATHROOM.toString();
+				}
+				else if(getKitchenField().isVisible())
+				{
+					nb = Integer.valueOf(getKitchenField().getText());
+					type = LocalType.KITCHEN.toString();
+				}
+				else if(getBedroomField().isVisible())
+				{
+					nb = Integer.valueOf(getBedroomField().getText());
+					type = LocalType.BEDROOM.toString();
+				}
+				System.out.println(type+" "+ nb);
+				ArrayList<Flat> res = model.searchFlats(type, nb);
+				searchFlats = new FrameDisplayFlats(res);
+				searchFlats.setVisible(true);
+			}
+		});
 	}
+
+
 	public int getBedRooms ()
 	{
 		return Integer.parseInt(bedroomField.getText());
@@ -91,5 +149,34 @@ public class FrameSpecifiedSearch extends JFrame
 	{
 		return Integer.parseInt(bathroomField.getText());
 	}
+
+	public void addBedroomListener(KeyAdapter listener)
+	{
+		bedroomField.addKeyListener(listener);
+	}
+	public void addBathroomKeyListener(KeyAdapter listener)
+	{
+		bathroomField.addKeyListener(listener);
+	}
+	public void addKitchenKeyListener(KeyAdapter listener)
+	{
+		kitchenField.addKeyListener(listener);
+	}
+
+	public JTextField getBathroomField()
+	{
+		return bathroomField;
+	}
+	public JTextField getKitchenField()
+	{
+		return kitchenField;
+	}
+	public JTextField getBedroomField()
+	{
+		return bedroomField;
+	}
+
+
+
 	
 }

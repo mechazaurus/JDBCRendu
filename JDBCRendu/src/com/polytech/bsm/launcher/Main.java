@@ -19,6 +19,7 @@ public class Main {
         FlatDAO flatDAO = new FlatDAO();
         LocalDAO localDAO = new LocalDAO();
         LinksDAO linksDAO = new LinksDAO();
+        SearchDAO searchDAO = new SearchDAO();
         
         SearchDAO searchDAO = new SearchDAO();
         
@@ -31,7 +32,7 @@ public class Main {
         
         try
         {
-        	MainAppModel mainModel = new MainAppModel(flatDAO, localDAO, linksDAO);
+        	MainAppModel mainModel = new MainAppModel(flatDAO, localDAO, linksDAO, searchDAO);
 			MainAppView mainView = new MainAppView();
             MainAppController mainController = new MainAppController(mainView, mainModel);
             mainModel.setController(mainController);

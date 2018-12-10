@@ -3,11 +3,13 @@ package com.polytech.bsm.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.polytech.bsm.controler.MainAppController;
 import com.polytech.bsm.controler.dao.FlatDAO;
 import com.polytech.bsm.controler.dao.LinksDAO;
 import com.polytech.bsm.controler.dao.LocalDAO;
+import com.polytech.bsm.controler.dao.SearchDAO;
 import com.polytech.bsm.view.MainAppView;
 
 public class MainAppModel 
@@ -22,17 +24,19 @@ public class MainAppModel
 	private LinksDAO linksDAO;
 	private FlatDAO flatDAO;
 	private LocalDAO localDAO;
+	private SearchDAO searchDAO;
 
 
 	private Flat createdFlat;
 	private ArrayList<Local> AddFlatlocals;
+	private HashMap<Integer, ArrayList<Integer>> links;
 
 
 
 
 	private ArrayList<Flat> flatList;
 	
-	public MainAppModel(FlatDAO flatdao, LocalDAO localdao, LinksDAO linksdao) throws SQLException
+	public MainAppModel(FlatDAO flatdao, LocalDAO localdao, LinksDAO linksdao, SearchDAO searchdao) throws SQLException
 	{
 		//this.bdd = new BDD();
 		flatList = flatdao.findAll();
@@ -41,6 +45,8 @@ public class MainAppModel
 		AddFlatlocals = new ArrayList<Local>();
 		localDAO = localdao;
 		linksDAO = linksdao;
+		links = linksDAO.findAllLinks();
+		searchDAO = searchdao;
 	}
 	public void setView(MainAppView view)
 	{
@@ -63,7 +69,20 @@ public class MainAppModel
 
 	public ArrayList<Flat> getFlatList()
 	{
-		return flatList;
+	    flatList =  flatDAO.findAll();
+	    return flatList;
+	}
+
+	public Flat getFlatFromID(int flatID)
+	{
+		for(int i=0; i<flatList.size(); i++)
+		{
+			if(flatID==flatList.get(i).getFlatID())
+			{
+				return flatList.get(i);
+			}
+		}
+		return null;
 	}
 
 	public ArrayList<Local> getLocalsFromFlatID(int flatID)
@@ -143,6 +162,10 @@ public class MainAppModel
 		localDAO.deleteRedondentLocals();
 
 		//TODO link locals to flat
+		for(int i=0; i<flat.getFlatLocals().size(); i++)
+		{
+			linksDAO.createLink(flat.getFlatID(), flat.getFlatLocals().get(i).getLocalID());
+		}
 
 
 
@@ -179,6 +202,17 @@ public class MainAppModel
 			}
 		}
 		return null;
+	}
+
+	public ArrayList<Flat> searchFlats(String type, int nb)
+	{
+		ArrayList<Integer> results = searchDAO.searchFlat(type, nb);
+		ArrayList<Flat> flats = new ArrayList<>();
+		for(int i=0; i<results.size(); i++)
+		{
+			flats.add(getFlatFromID(results.get(i)));
+		}
+		return flats;
 	}
 
 }

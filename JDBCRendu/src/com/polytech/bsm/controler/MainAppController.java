@@ -7,6 +7,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.polytech.bsm.model.FlatState;
+import com.polytech.bsm.model.Local;
 import com.polytech.bsm.model.LocalType;
 import com.polytech.bsm.model.MainAppModel;
 import com.polytech.bsm.view.*;
@@ -27,8 +28,10 @@ public class MainAppController
 	private FrameAddLocal addLocal;
 	private FrameEditLinks editLinks;
 	private FrameLocalInformations localInformations;
-	
-	
+
+	private FrameDisplayFlats searchFlats;
+
+
 	public MainAppController(MainAppView view, MainAppModel model)
 	{
 		this.mainAppView = view;
@@ -36,17 +39,17 @@ public class MainAppController
 		this.mainAppModel = model;
 
 		this.frameFlatCreation = new FrameFlatCreation();
-		this.searchAppartmentView = new FrameSpecifiedSearch();
-		
+		this.searchAppartmentView = new FrameSpecifiedSearch(model);
+
 		//Setting Listeners for mainApp frame
 		this.mainAppView.addAppartmentnListener(new MainAppController.addAppartmentButtonListener());
 		this.mainAppView.addSearchListener(new MainAppController.searchAppartmentButtonListener());
 		this.mainAppView.addDisplayFlatListener(new MainAppController.displayFlatsButtonListener());
 
 		//Setting Listeners for searchAppartmentView
-		this.searchAppartmentView.addSearchListener(new MainAppController.searchAppartmentListener());
-		
-			
+		//this.searchAppartmentView.setSearchBtnListener(new MainAppController.searchAppartmentListener());
+
+
 
 		//Setting Listeners for addFlatView
 		this.frameFlatCreation.addLocalListener(new MainAppController.addLocalListener());
@@ -56,7 +59,7 @@ public class MainAppController
 	}
 
 
-	 
+
     class addAppartmentButtonListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
@@ -102,6 +105,7 @@ public class MainAppController
         {
             try
             {
+                searchAppartmentView = new FrameSpecifiedSearch(mainAppModel);
             	searchAppartmentView.setVisible(true);
             }
             catch(NumberFormatException ex)
@@ -110,7 +114,7 @@ public class MainAppController
             }
         }
     }
-    
+
     class addLocalListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
@@ -149,6 +153,8 @@ public class MainAppController
     }
 
 
+
+
     class addEditLinkFrame implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
@@ -179,28 +185,44 @@ public class MainAppController
 
     class searchAppartmentListener implements ActionListener
     {
-        public void actionPerformed(ActionEvent e)
-        {
+        @Override
+        public void actionPerformed( ActionEvent aActionEvent ) {
+            //if check to match the code from the question, but not really needed
+            System.out.println("OOKOK");
+        }
+        /*
+        public void actionPerformed(ActionEvent e) {
             try
             {
-            	//Get query info from view
-                int nbBathrooms = searchAppartmentView.getBathroom() ;
-                int nbBedRooms = searchAppartmentView.getBedRooms();
-                int nbKitchens = searchAppartmentView.getKitchens();
+                System.out.println("OOKO");
+                int nb = 0;
+                String type = null;
+                if(searchAppartmentView.getBathroomField().isVisible())
+                {
+                    nb = Integer.valueOf(searchAppartmentView.getBathroomField().getText());
+                    type = LocalType.BATHROOM.toString();
+                }
+                else if(searchAppartmentView.getKitchenField().isVisible())
+                {
+                    nb = Integer.valueOf(searchAppartmentView.getKitchenField().getText());
+                    type = LocalType.KITCHEN.toString();
+                }
+                else if(searchAppartmentView.getBedroomField().isVisible())
+                {
+                    nb = Integer.valueOf(searchAppartmentView.getBedroomField().getText());
+                    type = LocalType.BEDROOM.toString();
+                }
 
-                //TODO Send query from model
-                //ResultSet rs = mainAppModel.searchSpecificAppartment(nbBedRooms, nbKitchens, nbBathrooms);
+                searchFlats = new FrameDisplayFlats(mainAppModel.searchFlats(type, nb));
+                searchFlats.setVisible(true);
 
 
-                //Create new JFrame to display response
-                //TODO
-               
             }
             catch(NumberFormatException ex)
             {
                 System.out.println(ex);
             }
-        }
+        }*/
     }
 
     class addLocalButtonListener implements ActionListener
@@ -354,6 +376,8 @@ public class MainAppController
             }
         }
     }
-    
-	
+
+
+
 }
+
