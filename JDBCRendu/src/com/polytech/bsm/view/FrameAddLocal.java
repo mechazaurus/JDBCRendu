@@ -14,8 +14,8 @@ import javax.swing.JTextField;
 
 public class FrameAddLocal extends JFrame {
 	
-	
-	private JComboBox typeComboBox;
+	private static final long serialVersionUID = 1L;
+	private JComboBox<String> typeComboBox;
 	private JButton btnAddLocal;
 	private JTextArea txtrSize;
 	private JTextArea txtrSpec;
