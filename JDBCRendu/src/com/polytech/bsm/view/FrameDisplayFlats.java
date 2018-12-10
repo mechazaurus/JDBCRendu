@@ -47,8 +47,11 @@ public class FrameDisplayFlats extends JFrame {
         //System.out.println(data);
 
         //Setting up the model for the JTable
-        model = new DefaultTableModel(data, columnNames);
-
+        model = new DefaultTableModel(data, columnNames){
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         //Adding columns names
         table = new JTable();
         table.setModel(model);
@@ -61,7 +64,6 @@ public class FrameDisplayFlats extends JFrame {
         scroll.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
-        table.setEnabled(false);
 
         this.add(scroll);
 
@@ -70,6 +72,7 @@ public class FrameDisplayFlats extends JFrame {
         setLocationRelativeTo(null);
         setVisible(false);
         setSize(600, 500);
+
     }
 
 

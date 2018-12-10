@@ -136,7 +136,7 @@ public class MainAppController
             {
                 displayAllFlatsFrame = new FrameDisplayFlats(mainAppModel.getFlatList());
                 displayAllFlatsFrame.setVisible(true);
-                displayAllFlatsFrame.addDoubleClickListener(new MainAppController.doubleClickListener());
+                //displayAllFlatsFrame.addDoubleClickListener(new MainAppController.doubleClickListener());
 
             }
             catch(NumberFormatException ex)
