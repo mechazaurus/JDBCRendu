@@ -1,11 +1,10 @@
-package com.polytech.bsm.controler.dao;
+package com.polytech.bsm.controller.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.polytech.bsm.model.Flat;
 import com.polytech.bsm.model.Local;
 import com.polytech.bsm.model.LocalType;
 

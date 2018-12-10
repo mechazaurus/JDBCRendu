@@ -67,9 +67,9 @@ public class FrameLocalInformations extends JFrame
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Locals List");
+        setSize(600, 500);
         setLocationRelativeTo(null);
         setVisible(false);
 
-        setSize(600, 500);
 	}
 }

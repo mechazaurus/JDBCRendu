@@ -15,6 +15,7 @@ import java.util.Vector;
 
 public class FrameDisplayFlats extends JFrame {
 
+    // Attributes
 	private static final long serialVersionUID = 1L;
 	private Vector<String> columnNames;
     private Vector<Vector<Object>> data;
@@ -22,21 +23,21 @@ public class FrameDisplayFlats extends JFrame {
     private DefaultTableModel model;
     private JButton getInfoBtn;
 
-    public FrameDisplayFlats(ArrayList<Flat> flats)
-    {
+    public FrameDisplayFlats(ArrayList<Flat> flats) {
+
+        getContentPane().setLayout(null);
+
         columnNames = new Vector<String>();
-        String [] col = new String[]{"IdFlat", "Address", "Description", "State"};
+        String[] col = new String[] {"IdFlat", "Address", "Description", "State"};
 
         //Set columns name
-        for (int i = 0; i<col.length; i++)
-        {
+        for (int i = 0; i<col.length; i++) {
             columnNames.add(col[i]);
         }
 
         data = new Vector<Vector<Object>>();
 
-        for(int i =0; i<flats.size(); i++)
-        {
+        for(int i =0; i<flats.size(); i++)  {
             Vector<Object> vector = new Vector<Object>();
             vector.add(flats.get(i).getFlatID());
             vector.add(flats.get(i).getFlatDescription());
@@ -45,16 +46,13 @@ public class FrameDisplayFlats extends JFrame {
             data.add(vector);
         }
 
-        //System.out.println(columnNames);
-        //System.out.println(data);
-
         //Setting up the model for the JTable
         model = new DefaultTableModel(data, columnNames){
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        getContentPane().setLayout(null);
+
         //Adding columns names
         table = new JTable();
         table.setModel(model);
@@ -63,11 +61,8 @@ public class FrameDisplayFlats extends JFrame {
 
         JScrollPane scroll = new JScrollPane(table);
         scroll.setBounds(0, 53, 600, 425);
-        scroll.setHorizontalScrollBarPolicy(
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scroll.setVerticalScrollBarPolicy(
-                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         getContentPane().add(scroll);
         
@@ -75,26 +70,25 @@ public class FrameDisplayFlats extends JFrame {
         getInfoBtn.setBounds(228, 12, 142, 29);
         getContentPane().add(getInfoBtn);
 
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Appartments List");
-        setLocationRelativeTo(null);
-        setVisible(false);
         setSize(600, 500);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setVisible(false);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     }
 
-
-    public void addDoubleClickListener(MouseAdapter e)
-    {
+    // Controller
+    public void addDoubleClickListener(MouseAdapter e) {
         table.addMouseListener(e);
     }
-    public void addGetInfoListener(ActionListener listenerAddLocal)
-    {
+
+    public void addGetInfoListener(ActionListener listenerAddLocal) {
         getInfoBtn.addActionListener(listenerAddLocal);
     }
 
-    public int getSelectedFlat()
-    {
+    public int getSelectedFlat() {
         int column = 0;
         int row = table.getSelectedRow();
         int value = (int) table.getModel().getValueAt(row, column);

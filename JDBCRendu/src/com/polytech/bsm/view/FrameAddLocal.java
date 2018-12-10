@@ -2,91 +2,92 @@ package com.polytech.bsm.view;
 
 import com.polytech.bsm.model.LocalType;
 
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-
 public class FrameAddLocal extends JFrame {
-	
+
+	// Attributes
 	private static final long serialVersionUID = 1L;
 	private JComboBox<String> typeComboBox;
 	private JButton btnAddLocal;
-	private JTextArea txtrSize;
-	private JTextArea txtrSpec;
+	private JLabel labelSize;
+	private JLabel labelSpec;
 	private JTextField sizeField;
 	private JTextField specField;
 	
-	public FrameAddLocal() 
-	{
+	public FrameAddLocal() {
+
 		getContentPane().setLayout(null);
+
+		// Type setup
+		JLabel labelLocalType = new JLabel();
+		labelLocalType.setText("Type");
+		labelLocalType.setBounds(59, 62, 81, 22);
+		getContentPane().add(labelLocalType);
 		
-		JTextArea txtrLocalType = new JTextArea();
-		txtrLocalType.setText("Type");
-		txtrLocalType.setBounds(59, 62, 81, 22);
-		getContentPane().add(txtrLocalType);
+		Vector<String> localType = new Vector<String>();
+		localType.addElement(LocalType.BATHROOM.toString());
+		localType.addElement(LocalType.BEDROOM.toString());
+		localType.addElement(LocalType.KITCHEN.toString());
 		
-		Vector<String> languages = new Vector<String>();
-		languages.addElement(LocalType.BATHROOM.toString());
-		languages.addElement(LocalType.BEDROOM.toString());
-		languages.addElement(LocalType.KITCHEN.toString());
-		
-		
-		typeComboBox= new JComboBox<String>(languages);
-		typeComboBox.setBounds(202, 53, 131, 36);
+		// Choose the flat type
+		typeComboBox = new JComboBox<String>(localType);
+		typeComboBox.setBounds(165, 53, 131, 36);
 		getContentPane().add(typeComboBox);
-		
-		btnAddLocal = new JButton("Add Local");
-		btnAddLocal.setBounds(126, 287, 117, 29);
-		getContentPane().add(btnAddLocal);
-		
-		txtrSize = new JTextArea();
-		txtrSize.setText("Size");
-		txtrSize.setBounds(59, 106, 81, 22);
-		getContentPane().add(txtrSize);
-		
-		txtrSpec = new JTextArea();
-		txtrSpec.setText("Spec");
-		txtrSpec.setBounds(59, 148, 81, 22);
-		getContentPane().add(txtrSpec);
-		
+
+		// Size setup
+		labelSize = new JLabel();
+		labelSize.setText("Size");
+		labelSize.setBounds(59, 106, 81, 22);
+		getContentPane().add(labelSize);
+
 		sizeField = new JTextField();
-		sizeField.setBounds(203, 101, 130, 26);
+		sizeField.setBounds(165, 101, 130, 26);
 		getContentPane().add(sizeField);
 		sizeField.setColumns(10);
-		
+
+		// Spec setup
+		labelSpec = new JLabel();
+		labelSpec.setText("Spec");
+		labelSpec.setBounds(59, 148, 81, 22);
+		getContentPane().add(labelSpec);
+
 		specField = new JTextField();
 		specField.setColumns(10);
-		specField.setBounds(203, 143, 130, 26);
+		specField.setBounds(165, 143, 130, 26);
 		getContentPane().add(specField);
-		
-        setTitle("Add Local");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setTitle("Search Appartments");
+
+		// Confirm button
+		btnAddLocal = new JButton("Add Local");
+		btnAddLocal.setBounds(59, 200, 117, 29);
+		getContentPane().add(btnAddLocal);
+
+		// Frame setup
+		setTitle("Add Local");
+		setSize(400, 300);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		setVisible(false);
-		setSize(490, 383);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
-
-	public int getSizeField()
-	{
+	// Controller
+	public int getSizeField() {
 		return Integer.parseInt(sizeField.getText());
 	}
-	public int getSpecField()
-	{
+
+	public int getSpecField() {
 		return Integer.parseInt(specField.getText());
 	}
-	public LocalType getLocalType()
-	{
+
+	public LocalType getLocalType() {
+
 		int tmp = typeComboBox.getSelectedIndex();
-		switch(tmp)
-		{
+
+		switch(tmp) {
 			case 0:
 				return LocalType.BATHROOM;
 			case 1:
@@ -94,11 +95,11 @@ public class FrameAddLocal extends JFrame {
 			case 2:
 				return LocalType.KITCHEN;
 		}
+
 		return null;
 	}
 
-	public void setListenerAddLocal(ActionListener listenerAddLocal)
-	{
+	public void setListenerAddLocal(ActionListener listenerAddLocal) {
 		btnAddLocal.addActionListener(listenerAddLocal);
 	}
 	

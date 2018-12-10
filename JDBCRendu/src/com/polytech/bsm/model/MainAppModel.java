@@ -1,44 +1,31 @@
 package com.polytech.bsm.model;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.polytech.bsm.controler.MainAppController;
-import com.polytech.bsm.controler.dao.FlatDAO;
-import com.polytech.bsm.controler.dao.LinksDAO;
-import com.polytech.bsm.controler.dao.LocalDAO;
-import com.polytech.bsm.controler.dao.SearchDAO;
+import com.polytech.bsm.controller.MainAppController;
+import com.polytech.bsm.controller.dao.FlatDAO;
+import com.polytech.bsm.controller.dao.LinksDAO;
+import com.polytech.bsm.controller.dao.LocalDAO;
+import com.polytech.bsm.controller.dao.SearchDAO;
 import com.polytech.bsm.view.MainAppView;
 
-public class MainAppModel 
-{
+public class MainAppModel {
 
-	//private BDD bdd;
-	@SuppressWarnings("unused")
 	private MainAppView mainAppView;
-	@SuppressWarnings("unused")
 	private MainAppController mainAppController;
-
 	private LinksDAO linksDAO;
 	private FlatDAO flatDAO;
 	private LocalDAO localDAO;
 	private SearchDAO searchDAO;
-
-
 	private Flat createdFlat;
 	private ArrayList<Local> AddFlatlocals;
 	private HashMap<Integer, ArrayList<Integer>> links;
-
-
-
-
 	private ArrayList<Flat> flatList;
 	
 	public MainAppModel(FlatDAO flatdao, LocalDAO localdao, LinksDAO linksdao, SearchDAO searchdao) throws SQLException
 	{
-		//this.bdd = new BDD();
 		flatList = flatdao.findAll();
 		createdFlat = null;
 		flatDAO = flatdao;
@@ -55,16 +42,6 @@ public class MainAppModel
 	public void setController(MainAppController controller)
 	{
 		this.mainAppController = controller;
-	}
-
-
-	public ArrayList<Flat> searchSpecificAppartment(int bedrooms, int kichen, int bathrooms)
-	{
-		//TODO
-
-
-
-		return null;
 	}
 
 	public ArrayList<Flat> getFlatList()
@@ -87,14 +64,17 @@ public class MainAppModel
 
 	public ArrayList<Local> getLocalsFromFlatID(int flatID)
 	{
+		ArrayList<Local> locals = new ArrayList<>();
+
 		for(int i=0; i<flatList.size(); i++)
 		{
 			if(flatID==flatList.get(i).getFlatID())
 			{
-				return flatList.get(i).getFlatLocals();
+				locals = flatList.get(i).getFlatLocals();
 			}
 		}
-		return null;
+
+		return locals;
 	}
 
 	public void addLocal(LocalType type, int size, int spec)

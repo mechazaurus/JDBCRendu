@@ -3,7 +3,6 @@ package com.polytech.bsm.view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -29,11 +28,12 @@ public class FrameFlatCreation extends JFrame {
 	private JButton addLocalButton;
 	private JTable localTable;
 	private JButton createFlatBtn;
-	private JButton btnEditLinks;
+	private JButton editLinkButton;
 	
 	public FrameFlatCreation() {
 
-		
+		getContentPane().setLayout(null);
+
 		// Title setup
 		titleLabel = new JLabel("Flat creation");
 		titleLabel.setBounds(50, 25, 200, 20);
@@ -93,53 +93,51 @@ public class FrameFlatCreation extends JFrame {
 		addLocalButton.setVisible(true);
 		getContentPane().add(addLocalButton);
 
+		// Edit links button
+		editLinkButton = new JButton("Edit Links");
+		editLinkButton.setBounds(695, 300, 120, 30);
+		getContentPane().add(editLinkButton);
 
-
+		// Display added locals
 		localTable = new JTable();
-		localTable.setBounds(50, 335, 900, 400);
+		localTable.setBounds(50, 335, 900, 350);
 		localTable.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
 		localTable.setVisible(true);
 		getContentPane().add(localTable);
 
-		getContentPane().setLayout(null);
-		
+		// Create button
 		createFlatBtn = new JButton("Create Flat");
-		createFlatBtn.setBounds(830, 743, 117, 29);
+		createFlatBtn.setBounds(830, 700, 120, 30);
 		getContentPane().add(createFlatBtn);
-		
-		btnEditLinks = new JButton("Edit Links");
-		btnEditLinks.setBounds(833, 265, 117, 29);
-		getContentPane().add(btnEditLinks);
+
+
+		// Frame setup
 		setBackground(Color.WHITE);
+		setSize(1100, 800);
 		setLocationRelativeTo(null);
 		setVisible(false);
-		setSize(1100, 800);
 
 	}
-	
-	public void addLocalListener(ActionListener listenForAddLocal)
-	{
+
+	// Controller
+	public void addLocalListener(ActionListener listenForAddLocal) {
 		addLocalButton.addActionListener(listenForAddLocal);
 	}
 	
-	public void addCreateFlatListener(ActionListener listenForCreateFlat)
-	{
+	public void addCreateFlatListener(ActionListener listenForCreateFlat) {
 		createFlatBtn.addActionListener(listenForCreateFlat);
 	}
 	
-	public void addEditLinkListener(ActionListener listenForEditLinkButton)
-	{
-		btnEditLinks.addActionListener(listenForEditLinkButton);
+	public void addEditLinkListener(ActionListener listenForEditLinkButton) {
+		editLinkButton.addActionListener(listenForEditLinkButton);
 	}
 
-	public void updateTable(ArrayList<Local>locals)
-    {
+	public void updateTable(ArrayList<Local>locals) {
         Vector<String> columnNames = new Vector<String>();
         String [] col = new String[]{"idLocal","LocalType", "Size", "Description"};
 
         //Set columns name
-        for (int i = 0; i<col.length; i++)
-        {
+        for (int i = 0; i<col.length; i++) {
             columnNames.add(col[i]);
         }
 
@@ -147,8 +145,7 @@ public class FrameFlatCreation extends JFrame {
         Vector<Vector<Object>> data;
         data = new Vector<Vector<Object>>();
 
-        for(int i =0; i<locals.size(); i++)
-        {
+        for(int i =0; i<locals.size(); i++) {
             Vector<Object> vector = new Vector<Object>();
             vector.add(locals.get(i).getLocalID());
             vector.add(locals.get(i).getLocalType());
@@ -157,41 +154,35 @@ public class FrameFlatCreation extends JFrame {
             data.add(vector);
         }
 
-        //System.out.println(columnNames);
-        //System.out.println(data);
-
-        //Setting up the model for the JTable
-
-
-
-		DefaultTableModel model = new DefaultTableModel(data, columnNames){
+		DefaultTableModel model = new DefaultTableModel(data, columnNames) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
+
         localTable.setModel(model);
         localTable.repaint();
     }
 
-    public String getAddress()
-	{
+    public String getAddress() {
 		return addressTextField.getText();
 	}
 
-	public String getDescription()
-	{
+	public String getDescription() {
 		return descriptionTextField.getText();
 	}
-	public FlatState getFlatState()
-	{
+
+	public FlatState getFlatState() {
+
 		int tmp = flatStateComboBox.getSelectedIndex();
-		switch(tmp)
-		{
+
+		switch(tmp) {
 			case 0:
 				return FlatState.UNDER_CONSTRUCTION;
 			case 1:
 				return FlatState.READY;
 		}
+
 		return null;
 	}
 

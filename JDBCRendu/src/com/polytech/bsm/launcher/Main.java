@@ -1,16 +1,14 @@
 package com.polytech.bsm.launcher;
 
-import com.polytech.bsm.controler.MainAppController;
-import com.polytech.bsm.controler.dao.FlatDAO;
-
-import com.polytech.bsm.controler.dao.LinksDAO;
-import com.polytech.bsm.controler.dao.LocalDAO;
-import com.polytech.bsm.controler.dao.SearchDAO;
+import com.polytech.bsm.controller.MainAppController;
+import com.polytech.bsm.controller.dao.FlatDAO;
+import com.polytech.bsm.controller.dao.LinksDAO;
+import com.polytech.bsm.controller.dao.LocalDAO;
+import com.polytech.bsm.controller.dao.SearchDAO;
 import com.polytech.bsm.model.MainAppModel;
 import com.polytech.bsm.view.MainAppView;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class Main {
 	
@@ -21,17 +19,7 @@ public class Main {
         LinksDAO linksDAO = new LinksDAO();
         SearchDAO searchDAO = new SearchDAO();
         
-        SearchDAO searchDAO = new SearchDAO();
-        
-        ArrayList<Integer> ids = new ArrayList<>();
-        ids = searchDAO.searchFlat("bedroom", 2);
-        
-        for(Integer id: ids) {
-        	System.out.println(id);
-        }
-        
-        try
-        {
+        try {
         	MainAppModel mainModel = new MainAppModel(flatDAO, localDAO, linksDAO, searchDAO);
 			MainAppView mainView = new MainAppView();
             MainAppController mainController = new MainAppController(mainView, mainModel);

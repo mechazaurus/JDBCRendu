@@ -1,4 +1,4 @@
-package com.polytech.bsm.controler.dao;
+package com.polytech.bsm.controller.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

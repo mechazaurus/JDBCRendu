@@ -1,13 +1,9 @@
-package com.polytech.bsm.controler;
+package com.polytech.bsm.controller;
 
 import java.awt.event.*;
-import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import com.polytech.bsm.model.FlatState;
-import com.polytech.bsm.model.Local;
 import com.polytech.bsm.model.LocalType;
 import com.polytech.bsm.model.MainAppModel;
 import com.polytech.bsm.view.*;
@@ -261,7 +257,7 @@ public class MainAppController
                 System.out.println(adress+desc+state);
                 //TODO send info to model
                 mainAppModel.createFlat(adress,desc,state);
-                System.out.println("Flat Added");
+                frameFlatCreation.dispose();
             }
             catch(NumberFormatException ex)
             {

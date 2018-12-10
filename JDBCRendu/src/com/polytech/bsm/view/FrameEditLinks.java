@@ -4,16 +4,18 @@ import com.polytech.bsm.model.Local;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class FrameEditLinks extends JFrame
-{
+public class FrameEditLinks extends JFrame  {
+
+	// Attributes
 	private static final long serialVersionUID = 1L;
-	private JTextField txtSelectedLocal;
+	private JLabel txtSelectedLocal;
 	private JList linkedLocalList;
 	private JList allLocalList;
 	private JButton linkLocalBtn;
@@ -22,16 +24,16 @@ public class FrameEditLinks extends JFrame
 	private JButton btnDone;
 	private DefaultListModel<Integer> listForLinks ;
 
-	
 	public FrameEditLinks() {
+
 		getContentPane().setLayout(null);
+
 		listForLinks = new DefaultListModel<>();
 		
 		linkedLocalList = new JList();
 		linkedLocalList.setBounds(459, 76, 193, 293);
+		linkedLocalList.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
 		getContentPane().add(linkedLocalList);
-		
-
 
 		linkLocalBtn = new JButton("");
 		linkLocalBtn.setIcon(new ImageIcon(FrameEditLinks.class.getResource("/com/polytech/bsm/view/right-arrow.png")));
@@ -40,16 +42,16 @@ public class FrameEditLinks extends JFrame
 
 		allLocalList = new JList<>();
 		allLocalList.setBounds(212, 76, 193, 293);
+		allLocalList.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
 		getContentPane().add(allLocalList);
 		
-		txtSelectedLocal = new JTextField();
+		txtSelectedLocal = new JLabel();
 		txtSelectedLocal.setText("Selected Local");
-		txtSelectedLocal.setBounds(53, 90, 100, 26);
+		txtSelectedLocal.setBounds(22, 90, 150, 26);
 		getContentPane().add(txtSelectedLocal);
-		txtSelectedLocal.setColumns(10);
 
 		unlinkLocalBtn = new JButton("");
-		unlinkLocalBtn.setIcon(new ImageIcon("/Users/irteza/InteliJWorkspace/JDBCRendu/JDBCRendu/src/com/polytech/bsm/view/left-arrow.png"));
+		unlinkLocalBtn.setIcon(new ImageIcon(FrameEditLinks.class.getResource("/com/polytech/bsm/view/left-arrow.png")));
 		unlinkLocalBtn.setBounds(410, 232, 44, 29);
 		getContentPane().add(unlinkLocalBtn);
 
@@ -61,9 +63,10 @@ public class FrameEditLinks extends JFrame
 		btnDone.setBounds(535, 397, 117, 29);
 		getContentPane().add(btnDone);
 		// Main window setup
-		setResizable(false);
+		setTitle("Edit links");
 		setSize(689, 498);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		setVisible(false);
 	}
 
