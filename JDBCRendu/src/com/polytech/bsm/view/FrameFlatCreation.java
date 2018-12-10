@@ -93,6 +93,8 @@ public class FrameFlatCreation extends JFrame {
 		addLocalButton.setVisible(true);
 		getContentPane().add(addLocalButton);
 
+
+
 		localTable = new JTable();
 		localTable.setBounds(50, 335, 900, 400);
 		localTable.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
@@ -160,7 +162,13 @@ public class FrameFlatCreation extends JFrame {
 
         //Setting up the model for the JTable
 
-        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+
+
+		DefaultTableModel model = new DefaultTableModel(data, columnNames){
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
         localTable.setModel(model);
         localTable.repaint();
     }
