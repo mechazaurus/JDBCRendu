@@ -38,7 +38,7 @@ public class MainAppController
 		this.searchAppartmentView = new FrameSpecifiedSearch(model);
 
 		//Setting Listeners for mainApp frame
-		this.mainAppView.addAppartmentnListener(new MainAppController.addAppartmentButtonListener());
+		this.mainAppView.addFlatListener(new MainAppController.addAppartmentButtonListener());
 		this.mainAppView.addSearchListener(new MainAppController.searchAppartmentButtonListener());
 		this.mainAppView.addDisplayFlatListener(new MainAppController.displayFlatsButtonListener());
 
