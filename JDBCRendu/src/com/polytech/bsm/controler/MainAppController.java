@@ -26,6 +26,7 @@ public class MainAppController
 
 	private FrameAddLocal addLocal;
 	private FrameEditLinks editLinks;
+	private FrameLocalInformations localInformations;
 	
 	
 	public MainAppController(MainAppView view, MainAppModel model)
@@ -136,7 +137,8 @@ public class MainAppController
             {
                 displayAllFlatsFrame = new FrameDisplayFlats(mainAppModel.getFlatList());
                 displayAllFlatsFrame.setVisible(true);
-                //displayAllFlatsFrame.addDoubleClickListener(new MainAppController.doubleClickListener());
+
+                displayAllFlatsFrame.addGetInfoListener(new MainAppController.getFlatInfo());
 
             }
             catch(NumberFormatException ex)
@@ -334,6 +336,24 @@ public class MainAppController
         }
     }
 
+    class getFlatInfo implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            try
+            {
+                //Get selected flat
+                int flatID= displayAllFlatsFrame.getSelectedFlat();
+                //Get flat's locals
+                localInformations = new FrameLocalInformations(mainAppModel.getLocalsFromFlatID(flatID));
+                localInformations.setVisible(true);
+            }
+            catch(NumberFormatException ex)
+            {
+                System.out.println(ex);
+            }
+        }
+    }
     
 	
 }

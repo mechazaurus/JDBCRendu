@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import com.polytech.bsm.controler.MainAppController;
 import com.polytech.bsm.controler.dao.FlatDAO;
+import com.polytech.bsm.controler.dao.LinksDAO;
 import com.polytech.bsm.controler.dao.LocalDAO;
 import com.polytech.bsm.view.MainAppView;
 
@@ -17,6 +18,8 @@ public class MainAppModel
 	private MainAppView mainAppView;
 	@SuppressWarnings("unused")
 	private MainAppController mainAppController;
+
+	private LinksDAO linksDAO;
 	private FlatDAO flatDAO;
 	private LocalDAO localDAO;
 
@@ -29,7 +32,7 @@ public class MainAppModel
 
 	private ArrayList<Flat> flatList;
 	
-	public MainAppModel(FlatDAO flatdao, LocalDAO localdao) throws SQLException
+	public MainAppModel(FlatDAO flatdao, LocalDAO localdao, LinksDAO linksdao) throws SQLException
 	{
 		//this.bdd = new BDD();
 		flatList = flatdao.findAll();
@@ -37,6 +40,7 @@ public class MainAppModel
 		flatDAO = flatdao;
 		AddFlatlocals = new ArrayList<Local>();
 		localDAO = localdao;
+		linksDAO = linksdao;
 	}
 	public void setView(MainAppView view)
 	{
@@ -60,6 +64,18 @@ public class MainAppModel
 	public ArrayList<Flat> getFlatList()
 	{
 		return flatList;
+	}
+
+	public ArrayList<Local> getLocalsFromFlatID(int flatID)
+	{
+		for(int i=0; i<flatList.size(); i++)
+		{
+			if(flatID==flatList.get(i).getFlatID())
+			{
+				return flatList.get(i).getFlatLocals();
+			}
+		}
+		return null;
 	}
 
 	public void addLocal(LocalType type, int size, int spec)

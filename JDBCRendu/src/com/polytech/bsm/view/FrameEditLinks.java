@@ -1,17 +1,16 @@
 package com.polytech.bsm.view;
 
 import com.polytech.bsm.model.Local;
-import com.polytech.bsm.model.LocalType;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
 public class FrameEditLinks extends JFrame
 {
+	private static final long serialVersionUID = 1L;
 	private JTextField txtSelectedLocal;
 	private JList linkedLocalList;
 	private JList allLocalList;

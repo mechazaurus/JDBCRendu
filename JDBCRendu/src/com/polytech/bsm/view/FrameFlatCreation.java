@@ -11,10 +11,8 @@ import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.polytech.bsm.model.Flat;
 import com.polytech.bsm.model.FlatState;
 import com.polytech.bsm.model.Local;
-import com.polytech.bsm.model.LocalType;
 
 public class FrameFlatCreation extends JFrame {
 

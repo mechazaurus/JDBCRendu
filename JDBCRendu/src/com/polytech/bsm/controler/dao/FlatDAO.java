@@ -177,12 +177,4 @@ public class FlatDAO extends DAO<Flat> {
 	}
 
 
-	public void updateObject()
-	{
-
-	}
-
-
-
-
 }

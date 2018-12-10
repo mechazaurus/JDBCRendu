@@ -4,6 +4,7 @@ import com.polytech.bsm.model.Flat;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
@@ -19,6 +20,7 @@ public class FrameDisplayFlats extends JFrame {
     private Vector<Vector<Object>> data;
     private JTable table;
     private DefaultTableModel model;
+    private JButton getInfoBtn;
 
     public FrameDisplayFlats(ArrayList<Flat> flats)
     {
@@ -52,6 +54,7 @@ public class FrameDisplayFlats extends JFrame {
                 return false;
             }
         };
+        getContentPane().setLayout(null);
         //Adding columns names
         table = new JTable();
         table.setModel(model);
@@ -59,13 +62,18 @@ public class FrameDisplayFlats extends JFrame {
         table.setFillsViewportHeight(true);
 
         JScrollPane scroll = new JScrollPane(table);
+        scroll.setBounds(0, 53, 600, 425);
         scroll.setHorizontalScrollBarPolicy(
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
 
-        this.add(scroll);
+        getContentPane().add(scroll);
+        
+        getInfoBtn = new JButton("Get Informations");
+        getInfoBtn.setBounds(228, 12, 142, 29);
+        getContentPane().add(getInfoBtn);
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Appartments List");
@@ -80,6 +88,16 @@ public class FrameDisplayFlats extends JFrame {
     {
         table.addMouseListener(e);
     }
+    public void addGetInfoListener(ActionListener listenerAddLocal)
+    {
+        getInfoBtn.addActionListener(listenerAddLocal);
+    }
 
-
+    public int getSelectedFlat()
+    {
+        int column = 0;
+        int row = table.getSelectedRow();
+        int value = (int) table.getModel().getValueAt(row, column);
+        return value;
+    }
 }

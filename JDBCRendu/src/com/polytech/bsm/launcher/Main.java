@@ -5,6 +5,7 @@ import com.polytech.bsm.controler.dao.FlatDAO;
 
 import java.sql.SQLException;
 
+import com.polytech.bsm.controler.dao.LinksDAO;
 import com.polytech.bsm.controler.dao.LocalDAO;
 import com.polytech.bsm.model.MainAppModel;
 import com.polytech.bsm.view.MainAppView;
@@ -15,10 +16,11 @@ public class Main {
     	
         FlatDAO flatDAO = new FlatDAO();
         LocalDAO localDAO = new LocalDAO();
+        LinksDAO linksDAO = new LinksDAO();
         
         try
         {
-        	MainAppModel mainModel = new MainAppModel(flatDAO, localDAO);
+        	MainAppModel mainModel = new MainAppModel(flatDAO, localDAO, linksDAO);
 			MainAppView mainView = new MainAppView();
             MainAppController mainController = new MainAppController(mainView, mainModel);
             mainModel.setController(mainController);
