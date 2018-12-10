@@ -102,6 +102,7 @@ public class MainAppController
         {
             try
             {
+                searchAppartmentView = new FrameSpecifiedSearch();
             	searchAppartmentView.setVisible(true);
             }
             catch(NumberFormatException ex)
@@ -183,10 +184,15 @@ public class MainAppController
         {
             try
             {
+
+
             	//Get query info from view
                 int nbBathrooms = searchAppartmentView.getBathroom() ;
                 int nbBedRooms = searchAppartmentView.getBedRooms();
                 int nbKitchens = searchAppartmentView.getKitchens();
+
+
+
 
                 //TODO Send query from model
                 //ResultSet rs = mainAppModel.searchSpecificAppartment(nbBedRooms, nbKitchens, nbBathrooms);
@@ -354,6 +360,8 @@ public class MainAppController
             }
         }
     }
-    
-	
+
+
+
 }
+

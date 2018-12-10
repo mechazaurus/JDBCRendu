@@ -3,6 +3,7 @@ package com.polytech.bsm.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.polytech.bsm.controler.MainAppController;
 import com.polytech.bsm.controler.dao.FlatDAO;
@@ -26,6 +27,7 @@ public class MainAppModel
 
 	private Flat createdFlat;
 	private ArrayList<Local> AddFlatlocals;
+	private HashMap<Integer, ArrayList<Integer>> links;
 
 
 
@@ -41,6 +43,7 @@ public class MainAppModel
 		AddFlatlocals = new ArrayList<Local>();
 		localDAO = localdao;
 		linksDAO = linksdao;
+		links = linksDAO.findAllLinks();
 	}
 	public void setView(MainAppView view)
 	{
@@ -143,6 +146,10 @@ public class MainAppModel
 		localDAO.deleteRedondentLocals();
 
 		//TODO link locals to flat
+		for(int i=0; i<flat.getFlatLocals().size(); i++)
+		{
+			linksDAO.createLink(flat.getFlatID(), flat.getFlatLocals().get(i).getLocalID());
+		}
 
 
 

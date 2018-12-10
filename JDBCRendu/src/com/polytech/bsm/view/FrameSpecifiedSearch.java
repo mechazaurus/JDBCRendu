@@ -5,6 +5,8 @@ import javax.swing.JTextArea;
 
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -72,6 +74,25 @@ public class FrameSpecifiedSearch extends JFrame
 		setLocationRelativeTo(null);
 		setVisible(false);
 		setSize(600, 500);
+
+		bedroomField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				bathroomField.setVisible(false);
+				kitchenField.setVisible(false);
+			}
+		});
+		bathroomField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				bedroomField.setVisible(false);
+				kitchenField.setVisible(false);
+			}
+		});
+		kitchenField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				bathroomField.setVisible(false);
+				bedroomField.setVisible(false);
+			}
+		});
 		
 	}
 	
@@ -91,5 +112,34 @@ public class FrameSpecifiedSearch extends JFrame
 	{
 		return Integer.parseInt(bathroomField.getText());
 	}
+
+	public void addBedroomListener(KeyAdapter listener)
+	{
+		bedroomField.addKeyListener(listener);
+	}
+	public void addBathroomKeyListener(KeyAdapter listener)
+	{
+		bathroomField.addKeyListener(listener);
+	}
+	public void addKitchenKeyListener(KeyAdapter listener)
+	{
+		kitchenField.addKeyListener(listener);
+	}
+
+	public JTextField getBathroomField()
+	{
+		return bathroomField;
+	}
+	public JTextField getKitchenField()
+	{
+		return kitchenField;
+	}
+	public JTextField getBedroomField()
+	{
+		return bedroomField;
+	}
+
+
+
 	
 }
