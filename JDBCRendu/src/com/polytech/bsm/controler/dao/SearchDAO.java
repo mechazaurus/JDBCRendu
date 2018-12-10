@@ -17,6 +17,7 @@ public class SearchDAO {
 		ArrayList<Integer> flatIDs = new ArrayList<>();
 
 		try {
+
 			PreparedStatement preparedStatement = this.connection
 					.prepareStatement("SELECT idFlat FROM Flat WHERE idFlat IN "
 							+ "(SELECT DISTINCT li.flatid FROM Links li INNER JOIN Local lo " 
