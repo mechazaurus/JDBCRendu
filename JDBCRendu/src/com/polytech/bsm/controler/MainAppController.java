@@ -1,9 +1,6 @@
 package com.polytech.bsm.controler;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -44,7 +41,7 @@ public class MainAppController
 		this.mainAppView.addAppartmentnListener(new MainAppController.addAppartmentButtonListener());
 		this.mainAppView.addSearchListener(new MainAppController.searchAppartmentButtonListener());
 		this.mainAppView.addDisplayFlatListener(new MainAppController.displayFlatsButtonListener());
-		
+
 		//Setting Listeners for searchAppartmentView
 		this.searchAppartmentView.addSearchListener(new MainAppController.searchAppartmentListener());
 		
@@ -139,6 +136,7 @@ public class MainAppController
             {
                 displayAllFlatsFrame = new FrameDisplayFlats(mainAppModel.getFlatList());
                 displayAllFlatsFrame.setVisible(true);
+                displayAllFlatsFrame.addDoubleClickListener(new MainAppController.doubleClickListener());
 
             }
             catch(NumberFormatException ex)
@@ -321,6 +319,17 @@ public class MainAppController
             catch(NumberFormatException ex)
             {
                 System.out.println(ex);
+            }
+        }
+    }
+
+    class doubleClickListener extends MouseAdapter
+    {
+        public void mouseClicked(MouseEvent e){
+            if (e.getClickCount() == 2){
+                JTable target = (JTable)e.getSource();
+                int row = target.getSelectedRow();
+                System.out.println(row);
             }
         }
     }

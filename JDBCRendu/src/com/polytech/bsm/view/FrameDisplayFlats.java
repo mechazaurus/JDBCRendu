@@ -4,6 +4,8 @@ import com.polytech.bsm.model.Flat;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -68,6 +70,12 @@ public class FrameDisplayFlats extends JFrame {
         setLocationRelativeTo(null);
         setVisible(false);
         setSize(600, 500);
+    }
+
+
+    public void addDoubleClickListener(MouseAdapter e)
+    {
+        table.addMouseListener(e);
     }
 
 

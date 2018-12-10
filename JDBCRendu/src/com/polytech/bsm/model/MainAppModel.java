@@ -68,7 +68,6 @@ public class MainAppModel
 		local.setLocalType(type);
 		local.setLocalSpec(spec);
 		local.setLocalSize(size);
-		//TODO SET ID ET UPDATE ID
 		local.setLocalLinks(new ArrayList<Local>());
 		int tmp = 0;
 		for(int i=0; i<AddFlatlocals.size(); i++)
@@ -79,6 +78,10 @@ public class MainAppModel
 			}
 		}
 		tmp = tmp +1;
+		if(tmp<localDAO.findLastID())
+		{
+			tmp = localDAO.findLastID() +1;
+		};
 		local.setLocalID(tmp);
 		AddFlatlocals.add(local);
         System.out.println("local Added");
@@ -124,6 +127,9 @@ public class MainAppModel
 		localDAO.deleteRedondentLocals();
 
 		//TODO link locals to flat
+
+
+
 
 		flatDAO = new FlatDAO();
         localDAO = new LocalDAO();

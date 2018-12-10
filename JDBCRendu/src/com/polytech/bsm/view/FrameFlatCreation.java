@@ -3,6 +3,7 @@ package com.polytech.bsm.view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -113,6 +114,7 @@ public class FrameFlatCreation extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(false);
 		setSize(1100, 800);
+
 	}
 	
 	public void addLocalListener(ActionListener listenForAddLocal)
@@ -133,7 +135,7 @@ public class FrameFlatCreation extends JFrame {
 	public void updateTable(ArrayList<Local>locals)
     {
         Vector<String> columnNames = new Vector<String>();
-        String [] col = new String[]{"LocalType", "Size", "Description"};
+        String [] col = new String[]{"idLocal","LocalType", "Size", "Description"};
 
         //Set columns name
         for (int i = 0; i<col.length; i++)
@@ -148,6 +150,7 @@ public class FrameFlatCreation extends JFrame {
         for(int i =0; i<locals.size(); i++)
         {
             Vector<Object> vector = new Vector<Object>();
+            vector.add(locals.get(i).getLocalID());
             vector.add(locals.get(i).getLocalType());
             vector.add(locals.get(i).getLocalSize());
             vector.add(locals.get(i).getLocalSpec());
@@ -185,4 +188,5 @@ public class FrameFlatCreation extends JFrame {
 		}
 		return null;
 	}
+
 }
